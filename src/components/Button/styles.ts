@@ -1,9 +1,11 @@
+import { main_bg_color, main_border_color, main_text_color } from './../CustomTheme/index';
 import { StyleSheet } from 'react-native';
+
 const mainColor = '#ff6644';
 
 export const styles: any = StyleSheet.create({
     style_btn_default_container: {
-        backgroundColor: mainColor,
+        backgroundColor: main_bg_color,
         paddingHorizontal: 40,
         borderRadius: 4
     },
@@ -39,10 +41,10 @@ export const styles: any = StyleSheet.create({
         backgroundColor: '#FFB2A1'
     },
     style_btn_default_prassIn_container: {
-        backgroundColor: '#E55B3D'
+        opacity: 0.8
     },
     style_btn_ghost_container: {
-        borderColor: mainColor,
+        borderColor: main_border_color,
         borderWidth: 1,
         backgroundColor: '#fff',
         paddingHorizontal: 40,
@@ -50,7 +52,7 @@ export const styles: any = StyleSheet.create({
         borderRadius: 4
     },
     style_btn_ghost_text: {
-        color: mainColor,
+        color: main_text_color,
         textAlign: 'center'
     },
     style_btn_ghost_disabled_neutral_container: {

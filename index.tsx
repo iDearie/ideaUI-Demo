@@ -6,9 +6,9 @@ import { Provider } from 'mobx-react';
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import App from './src/screen/AppScreen';
 import MineScreen from './src/screen/MineScreen';
 import store from './src/store';
-import App from './src/screen/AppScreen';
 
 class MainApp extends Component {
     fucChange = (WrappedComponent: any) => {
