@@ -1,11 +1,12 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { border_color_1, text_color_2, text_color_1 } from './../CustomTheme/index';
 
 export const styles = StyleSheet.create({
     container: { backgroundColor: 'white' },
 
     defaultLabelStyle: {
         fontSize: 14,
-        color: '#333333'
+        color: text_color_1
     },
 
     style_list_item_container: {
@@ -15,7 +16,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 16,
         backgroundColor: 'white',
-        borderBottomColor: 'rgb(234, 234, 234)'
+        borderBottomColor: border_color_1
     },
     style_open_view_container: {
         position: 'absolute',
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
         height: 13
     },
     styles_extend_text: {
-        color: '#999',
+        color: text_color_2,
         fontSize: 14
     }
 });

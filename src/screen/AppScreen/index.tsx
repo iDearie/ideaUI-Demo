@@ -19,6 +19,8 @@ import { Slider } from '../../components/Slider';
 import OperaterList from '../../components/OperaterList';
 import Tab from '../../components/Tab';
 import Pagination from '../../components/Pagination';
+import Accordion from '../../components/Accordion';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -54,13 +56,29 @@ export default class App extends Component<Props> {
                 <View style={{ width: '100%' }}>
                     <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
                         <View>
-                            <OperaterList>
-                                <OperaterList.Item label={'姓名'}>{`appStore - ${appStore.app}`}</OperaterList.Item>
-                                <OperaterList.Item label={'姓名'}>{`appStore - ${appStore.app}`}</OperaterList.Item>
-                            </OperaterList>
-                            <Button onPress={this.navToMine} viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
-                                提交
-                            </Button>
+                            <Accordion>
+                                <Accordion.Panel header={'OperaterList'} key={'operater'}>
+                                    <OperaterList>
+                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
+                                            appStore.app
+                                        }`}</OperaterList.Item>
+                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
+                                            appStore.app
+                                        }`}</OperaterList.Item>
+                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
+                                            appStore.app
+                                        }`}</OperaterList.Item>
+                                    </OperaterList>
+                                </Accordion.Panel>
+                                <Accordion.Panel header={'Button'} key={'button'}>
+                                    <Button
+                                        type={'ghost'}
+                                        onPress={this.navToMine}
+                                        viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
+                                        提交
+                                    </Button>
+                                </Accordion.Panel>
+                            </Accordion>
                         </View>
                         <View style={{ marginHorizontal: 20 }}>
                             <Slider showLeft max={60} onChange={this.onChangeSlider} />

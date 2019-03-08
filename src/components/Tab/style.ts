@@ -1,5 +1,5 @@
-import { main_bg_color, border_color } from './../CustomTheme/index';
 import { StyleSheet } from 'react-native';
+import { border_color_1, main_bg_color } from './../CustomTheme/index';
 
 export const styles = StyleSheet.create({
     style_tab_title_container: {
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: 50,
         position: 'relative',
-        borderBottomColor: border_color,
+        borderBottomColor: border_color_1,
         borderBottomWidth: 0.5
     },
     style_tab_title_item_container: {
