@@ -7,20 +7,18 @@
  *
  * @format
  */
-
 import { inject } from 'mobx-react';
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
-import { Button } from '../../components/Button';
-import { AppStore } from '../../store/AppStore';
-import { Popover } from '../../components/Slider/Popover';
-import { Slider } from '../../components/Slider';
-import OperaterList from '../../components/OperaterList';
-import Tab from '../../components/Tab';
-import Pagination from '../../components/Pagination';
+
 import Accordion from '../../components/Accordion';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from '../../components/Button';
+import List from '../../components/List';
+import Pagination from '../../components/Pagination';
+import { Slider } from '../../components/Slider';
+import Tab from '../../components/Tab';
+import { AppStore } from '../../store/AppStore';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -56,19 +54,13 @@ export default class App extends Component<Props> {
                 <View style={{ width: '100%' }}>
                     <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
                         <View>
-                            <Accordion>
-                                <Accordion.Panel header={'OperaterList'} key={'operater'}>
-                                    <OperaterList>
-                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
-                                            appStore.app
-                                        }`}</OperaterList.Item>
-                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
-                                            appStore.app
-                                        }`}</OperaterList.Item>
-                                        <OperaterList.Item label={'姓名'}>{`appStore - ${
-                                            appStore.app
-                                        }`}</OperaterList.Item>
-                                    </OperaterList>
+                            <Accordion activeKey={'List'}>
+                                <Accordion.Panel header={'List'} key={'list'}>
+                                    <List>
+                                        <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
+                                        <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
+                                        <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
+                                    </List>
                                 </Accordion.Panel>
                                 <Accordion.Panel header={'Button'} key={'button'}>
                                     <Button
@@ -81,18 +73,18 @@ export default class App extends Component<Props> {
                             </Accordion>
                         </View>
                         <View style={{ marginHorizontal: 20 }}>
-                            <Slider showLeft max={60} onChange={this.onChangeSlider} />
-                            <OperaterList>
-                                <OperaterList.Item activeOpacity={1} showArror={false}>
+                            <Slider showLeft onChange={this.onChangeSlider} />
+                            <List>
+                                <List.Item activeOpacity={1} showArrow={false}>
                                     <Pagination current={1} total={20} onChange={this.onChangePagination} />
-                                </OperaterList.Item>
-                                <OperaterList.Item activeOpacity={1} showArror={false}>
+                                </List.Item>
+                                <List.Item activeOpacity={1} showArrow={false}>
                                     <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
-                                </OperaterList.Item>
-                                <OperaterList.Item activeOpacity={1} showArror={false}>
+                                </List.Item>
+                                <List.Item activeOpacity={1} showArrow={false}>
                                     <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
-                                </OperaterList.Item>
-                            </OperaterList>
+                                </List.Item>
+                            </List>
                         </View>
                     </Tab>
                 </View>

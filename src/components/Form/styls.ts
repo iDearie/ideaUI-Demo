@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    errorinfoText: {
+    error_text: {
         position: 'absolute',
         bottom: 0,
         left: 16,

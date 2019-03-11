@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleProp, ViewStyle } from 'react-native';
 import ViewOverflow from '../overflow';
 import { SliderLine } from './SliderLine';
 import { SliderWrap } from './SliderWrap';
@@ -8,19 +7,59 @@ import { sliderWrapWidth, styles } from './style';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-export class Slider extends React.Component {
-    constructor(props) {
+interface SliderProps {
+    max: number; // 最大值
+    showLeft?: boolean; // 是否展示左侧滑块
+    showPopover?: boolean; // 是否展示Popover
+    startMessage?: string; // 左侧滑块Popover内容
+    endMessage?: string; // 右侧滑块Popover内容
+    style?: StyleProp<ViewStyle>; // 根节点样式
+    onChange?: (object: { start: number; end: number }) => void; // onChange回调方法
+    start?: number;
+    end?: number;
+}
+
+const defaultProps: SliderProps = {
+    max: 100,
+    showLeft: false,
+    showPopover: true
+};
+
+export class Slider extends React.Component<SliderProps> {
+    static defaultProps = defaultProps;
+
+    startWrap: any;
+    endWrap: any;
+    lineWrap: any;
+
+    componentWidth: number;
+    paddingRight: number;
+    paddingLeft: number;
+    scaleWidth: number;
+
+    state: {
+        left: number;
+        right: number;
+        start: number;
+        end: number;
+    };
+
+    constructor(props: SliderProps) {
         super(props);
-        const { max } = props;
+        const { max = defaultProps.max } = props;
         this.state = {
             left: 0,
             right: 0,
             start: 0,
             end: max
         };
+        this.componentWidth = 0;
+        this.paddingRight = 0;
+        this.paddingLeft = 0;
+        this.scaleWidth = 0;
     }
 
-    onLayout = ({ layout }) => {
+    onLayout = ({ nativeEvent: { layout } }: any) => {
         const { max, showLeft } = this.props;
         const { width } = layout;
         this.componentWidth = width;
@@ -29,7 +68,7 @@ export class Slider extends React.Component {
         this.resizePosition(this.props);
     };
 
-    resizePosition = props => {
+    resizePosition = (props: SliderProps) => {
         const { max, showLeft } = this.props;
         const { start = this.state.start, end = this.state.end } = props;
         let left = showLeft ? start * this.scaleWidth : 0;
@@ -52,7 +91,7 @@ export class Slider extends React.Component {
         });
     };
 
-    onDragStart = ({ nativeEvent }) => {
+    onDragStart = ({ nativeEvent }: any) => {
         const { right: stateRight } = this.state;
         const left = nativeEvent.pageX - this.paddingLeft;
         const total = left + stateRight + sliderWrapWidth * 2;
@@ -72,7 +111,7 @@ export class Slider extends React.Component {
         this.onChange({ start, end: this.state.end });
     };
 
-    onDragEnd = ({ nativeEvent }) => {
+    onDragEnd = ({ nativeEvent }: any) => {
         const { left: stateLeft } = this.state;
         const { showLeft } = this.props;
         const right = windowWidth - nativeEvent.pageX - this.paddingRight;
@@ -94,48 +133,30 @@ export class Slider extends React.Component {
         this.onChange({ start: this.state.start, end });
     };
 
-    onChange = ({ start, end }) => {
+    onChange = ({ start, end }: { start: number; end: number }) => {
         const { onChange } = this.props;
         onChange && onChange({ start, end });
     };
     render() {
         const { showLeft, showPopover, startMessage = '', endMessage = '', style } = this.props;
         return (
-            <ViewOverflow
-                style={[styles.style_slider_container_view, style]}
-                onLayout={({ nativeEvent }) => this.onLayout(nativeEvent)}>
+            <ViewOverflow style={[styles.style_slider_container_view, style]} onLayout={this.onLayout}>
                 {showLeft ? (
                     <SliderWrap
                         showPopover={showPopover}
                         message={startMessage}
-                        refs={ref => (this.startWrap = ref)}
+                        refs={(ref: any) => (this.startWrap = ref)}
                         onDrag={this.onDragStart}
                     />
                 ) : null}
-                <SliderLine refs={ref => (this.lineWrap = ref)} showLeft={showLeft} />
+                <SliderLine refs={(ref: any) => (this.lineWrap = ref)} showLeft={showLeft} />
                 <SliderWrap
                     showPopover={showPopover}
                     message={endMessage}
-                    refs={ref => (this.endWrap = ref)}
+                    refs={(ref: any) => (this.endWrap = ref)}
                     onDrag={this.onDragEnd}
                 />
             </ViewOverflow>
         );
     }
 }
-
-Slider.propTypes = {
-    max: PropTypes.number, // 最大值
-    showLeft: PropTypes.bool, // 是否展示左侧滑块
-    showPopover: PropTypes.bool, // 是否展示Popover
-    startMessage: PropTypes.string, // 左侧滑块Popover内容
-    endMessage: PropTypes.string, // 右侧滑块Popover内容
-    style: PropTypes.any, // 根节点样式
-    onChange: PropTypes.func // onChange回调方法
-};
-
-Slider.defaultProps = {
-    max: 100,
-    showLeft: false,
-    showPopover: true
-};

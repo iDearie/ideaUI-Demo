@@ -15,18 +15,18 @@ interface ButtonProps {
 
 export class Button extends React.Component<ButtonProps> {
     state = {
-        prassIn: false
+        pressIn: false
     };
 
     onPressIn = () => {
         this.setState({
-            prassIn: true
+            pressIn: true
         });
     };
 
     onPressOut = () => {
         this.setState({
-            prassIn: false
+            pressIn: false
         });
     };
 
@@ -43,7 +43,7 @@ export class Button extends React.Component<ButtonProps> {
             onPress
         } = this.props;
 
-        const { prassIn } = this.state;
+        const { pressIn } = this.state;
         return (
             <TouchableWithoutFeedback
                 onPressIn={this.onPressIn}
@@ -55,7 +55,7 @@ export class Button extends React.Component<ButtonProps> {
                         styles[`style_btn_${type}_container`],
                         styles[`style_btn_size_${size}`],
                         viewStyle,
-                        prassIn ? styles[`style_btn_${type}_prassIn_container`] : null,
+                        pressIn ? styles[`style_btn_${type}_pressIn_container`] : null,
                         disabled ? styles[`style_btn_${type}_disabled_${disabledType}_container`] : null
                     ]}>
                     <Text

@@ -1,10 +1,18 @@
 import React from 'react';
-import { Image, PanResponder, Text, View } from 'react-native';
+import { Image, PanResponder, Text, View, StyleProp, ViewStyle } from 'react-native';
 import ViewOverflow from '../overflow';
 import { Popover } from './Popover';
 import { styles } from './style';
 
-export class SliderWrap extends React.Component {
+interface SliderWrapProps {
+    onDrag?: (object: any) => void;
+    message?: string;
+    style?: StyleProp<ViewStyle>;
+    refs?: any;
+    showPopover?: boolean;
+}
+
+export class SliderWrap extends React.Component<SliderWrapProps> {
     state = {
         isVisible: false
     };
@@ -24,7 +32,6 @@ export class SliderWrap extends React.Component {
         return (
             <ViewOverflow refs={refs} style={[styles.style_slider_wrap_view, style]} {...this.panResponder.panHandlers}>
                 <Popover
-                    message={message}
                     isVisible={showPopover}
                     customView={
                         <View style={[styles.style_popover_content]}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
-import OperaterList from '../OperaterList';
+import List from '../List';
 import Icon from '../Icon';
 
 interface PanelProps {
@@ -16,11 +16,11 @@ class Panel extends Component<PanelProps> {
             <View>
                 {header ? (
                     <View style={[styles.header_container]}>
-                        <OperaterList.Item
-                            showArror={false}
-                            label={typeof header === 'string' ? <Text>{header}</Text> : header}>
-                            <Icon name={'chevron-down'} style={{ transform: [{ rotateZ: '-90deg' }] }} />
-                        </OperaterList.Item>
+                        <List.Item
+                            showArrow={false}
+                            label={React.isValidElement(header) ? header : <Text>{header}</Text>}>
+                            <Icon name={'chevron-down'} />
+                        </List.Item>
                     </View>
                 ) : null}
                 <View>{children}</View>
@@ -29,10 +29,16 @@ class Panel extends Component<PanelProps> {
     }
 }
 
-export default class Accordion extends Component {
+interface AccordionProps {
+    activeKey?: string;
+}
+
+export default class Accordion extends Component<AccordionProps> {
     static Panel = Panel;
     render() {
-        const { children } = this.props;
-        return <View>{children}</View>;
+        const { children, activeKey } = this.props;
+        return React.Children.map(children, child => {
+            return React.cloneElement(child as React.ReactElement, { activeKey });
+        });
     }
 }

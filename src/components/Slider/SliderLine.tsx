@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { styles } from './style';
 
-export class SliderLine extends React.Component {
+export class SliderLine extends React.Component<{ refs: any }> {
     render() {
         const { refs } = this.props;
         return (

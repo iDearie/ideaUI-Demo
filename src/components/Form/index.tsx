@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Text, View, ViewStyle, TextStyle, StyleProp } from 'react-native';
 import { createForm } from 'rc-form';
 import { styles } from './styls';
-import OperaterList from '../OperaterList';
-const { Item: OperaterListItem } = OperaterList;
+import List from '../List';
+const { Item: ListItem } = List;
 
 interface FormItemProps {
     viewStyle: StyleProp<ViewStyle>; // Item 根节点样式
@@ -15,9 +15,9 @@ interface FormItemProps {
     label: string; // Item label文字
     error?: string[]; // Item 错误文案
     activeOpacity?: number;
-    showArror?: boolean;
+    showArrow?: boolean;
     disabled?: boolean;
-    touchabled?: boolean;
+    touchable?: boolean;
     children: any;
 }
 
@@ -30,7 +30,7 @@ class FormItem extends React.PureComponent<FormItemProps> {
         if (error) {
             return error.map((info: any) => {
                 return (
-                    <Text style={styles.errorinfoText} key={info}>
+                    <Text style={styles.error_text} key={info}>
                         {info}
                     </Text>
                 );
@@ -72,15 +72,15 @@ class FormItem extends React.PureComponent<FormItemProps> {
             separate = 0,
             borderBottom = 0.5,
             activeOpacity,
-            showArror,
+            showArrow,
             disabled = false,
-            touchabled = true
+            touchable = true
         } = this.props;
 
         return (
-            <OperaterList>
-                <OperaterListItem
-                    touchabled={touchabled}
+            <List>
+                <ListItem
+                    touchable={touchable}
                     disabled={disabled}
                     borderBottom={borderBottom}
                     separate={separate}
@@ -90,10 +90,10 @@ class FormItem extends React.PureComponent<FormItemProps> {
                     labelStyle={labelStyle}
                     extendStyle={extendStyle}
                     activeOpacity={activeOpacity}
-                    showArror={showArror}>
+                    showArrow={showArrow}>
                     {this.renderChild(this.props)}
-                </OperaterListItem>
-            </OperaterList>
+                </ListItem>
+            </List>
         );
     }
 }

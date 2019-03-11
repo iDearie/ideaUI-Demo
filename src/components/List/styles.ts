@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     style_open_view_container_no_label: { justifyContent: 'flex-start', width: '100%' },
     style_label_view_container: { flexDirection: 'row', alignItems: 'center' },
     style_label_view_container_icon: { width: 13, height: 13, marginRight: 15 },
-    arror_png: {
+    arrow_png: {
         width: 13,
         height: 13
     },

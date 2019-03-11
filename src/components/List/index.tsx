@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { styles } from './styles';
 
-interface OperaterListItemProps {
+interface ListItemProps {
     viewStyle?: StyleProp<ViewStyle>; // Item组件根节点样式
     label?: string | number | React.ReactElement<any> | React.ReactElement<any>[]; // 组件左侧文字或者组件
     icon?: any; // 左侧icon
@@ -20,19 +20,19 @@ interface OperaterListItemProps {
     onPress?: (event: GestureResponderEvent) => void; // 点击Item调用方法
     separate?: number; // 分隔符高度 默认为0
     borderBottom?: number; // 下边框 默认为0.5
-    showArror?: boolean; //是否显示右侧箭头
+    showArrow?: boolean; //是否显示右侧箭头
     activeOpacity?: number;
     disabled?: boolean;
-    touchabled?: boolean;
+    touchable?: boolean;
     children: React.ReactElement<any> | React.ReactElement<any>[] | string | number | null;
 }
 
-interface OperaterListProps {
+interface ListProps {
     style?: StyleProp<ViewStyle>;
 }
 
-class Item extends React.PureComponent<OperaterListItemProps> {
-    renderChild = (props: OperaterListItemProps) => {
+class Item extends React.PureComponent<ListItemProps> {
+    renderChild = (props: ListItemProps) => {
         const { children, ...otherProps } = props;
         return React.cloneElement(children as React.ReactElement, {
             ...otherProps
@@ -48,11 +48,11 @@ class Item extends React.PureComponent<OperaterListItemProps> {
             extendStyle,
             separate = 0,
             borderBottom = 0.5,
-            showArror = true,
+            showArrow = true,
             icon,
             activeOpacity = 0.2,
             disabled = false,
-            touchabled = true,
+            touchable = true,
             children
         } = this.props;
 
@@ -77,7 +77,7 @@ class Item extends React.PureComponent<OperaterListItemProps> {
                     {!children || typeof children === 'string' || typeof children === 'number' ? (
                         <View style={[styles.styles_extend_component_container]}>
                             {children ? <Text style={[styles.styles_extend_text, extendStyle]}>{children}</Text> : null}
-                            {showArror ? <Image style={[styles.arror_png]} source={require('./arror.png')} /> : null}
+                            {showArrow ? <Image style={[styles.arrow_png]} source={require('./arrow.png')} /> : null}
                         </View>
                     ) : (
                         <View
@@ -87,14 +87,14 @@ class Item extends React.PureComponent<OperaterListItemProps> {
                                 !label ? styles.style_open_view_container_no_label : null
                             ]}>
                             {this.renderChild(this.props)}
-                            {showArror ? <Image style={[styles.arror_png]} source={require('./arror.png')} /> : null}
+                            {showArrow ? <Image style={[styles.arrow_png]} source={require('./arrow.png')} /> : null}
                         </View>
                     )}
                 </View>
             </View>
         );
 
-        return touchabled ? (
+        return touchable ? (
             <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={activeOpacity}>
                 {viewContainer}
             </TouchableOpacity>
@@ -104,7 +104,7 @@ class Item extends React.PureComponent<OperaterListItemProps> {
     }
 }
 
-export default class OperaterList extends React.Component<OperaterListProps> {
+export default class List extends React.Component<ListProps> {
     static Item = Item;
     render() {
         const { children, style } = this.props;

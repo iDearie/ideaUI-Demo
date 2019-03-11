@@ -10,7 +10,7 @@ import {
     StyleProp
 } from 'react-native';
 import { styles } from './style';
-import OperaterList from '../OperaterList';
+import List from '../List';
 
 export interface CheckboxProps {
     style?: StyleProp<ViewStyle>; // 根节点style
@@ -31,7 +31,7 @@ export interface CheckboxItemProps {
     layout?: 'list' | 'inline';
     borderBottom?: number; // list 布局下的下边框
     onChange?: (activeKey: any) => void;
-    checkedValues?: string[]; // 选中的value集合
+    checkedValues?: Array<string>; // 选中的value集合
     numberOfLines?: number;
 }
 
@@ -88,10 +88,10 @@ class Item extends React.Component<CheckboxItemProps> {
                 </View>
             ),
             list_checkbox: (
-                <OperaterList.Item
+                <List.Item
                     borderBottom={borderBottom}
                     label={<Text numberOfLines={numberOfLines}>{children}</Text>}
-                    showArror={false}
+                    showArrow={false}
                     onPress={this.onPress}>
                     {checked ? (
                         <Image
@@ -99,7 +99,7 @@ class Item extends React.Component<CheckboxItemProps> {
                             source={require('./image/item_check_auto_say_hi.png')}
                         />
                     ) : null}
-                </OperaterList.Item>
+                </List.Item>
             )
         };
 
