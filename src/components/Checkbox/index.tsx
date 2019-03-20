@@ -1,16 +1,8 @@
 import * as React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  TextStyle,
-  ViewStyle,
-  Image,
-  TouchableWithoutFeedback,
-  StyleProp
-} from 'react-native';
-import { styles } from './style';
+import { Image, StyleProp, Text, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import List from '../List';
+import { WithTheme } from '../Theme';
+import { CheckBoxStyles, styles } from './style';
 
 export interface CheckboxProps {
   style?: StyleProp<ViewStyle>; // 根节点style
@@ -19,7 +11,6 @@ export interface CheckboxProps {
   onChange?: (activeKey: number, checkedValue: number[]) => void; // 改变状态回调
   radio?: boolean; // 是否单选 默认false
   defaultValue?: number[] | string[]; // 默认值
-  value: string; // Item 组件 value
   children: any;
 }
 
@@ -55,17 +46,17 @@ class Item extends React.Component<CheckboxItemProps> {
     const checked = checkedValues.includes(value);
 
     const ItemStyle: any = {
-      inline_tag: (
+      inline_tag: (_style: CheckBoxStyles) => (
         <View
           style={[
-            styles.style_checkbox_inline_tag_item_view,
-            checked ? styles.style_checkbox_inline_tag_item_view_active : null,
+            _style.style_checkbox_inline_tag_item_view,
+            checked ? _style.style_checkbox_inline_tag_item_view_active : null,
             viewStyle
           ]}>
           <Text
             style={[
-              styles.style_checkbox_inline_tag_item_text,
-              checked ? styles.style_checkbox_inline_tag_item_text_active : null,
+              _style.style_checkbox_inline_tag_item_text,
+              checked ? _style.style_checkbox_inline_tag_item_text_active : null,
               textStyle
             ]}
             numberOfLines={numberOfLines}>
@@ -73,19 +64,19 @@ class Item extends React.Component<CheckboxItemProps> {
           </Text>
         </View>
       ),
-      inline_checkbox: (
-        <View style={[styles.style_checkbox_inline_checkbox_item_view, viewStyle]}>
+      inline_checkbox: (_style: CheckBoxStyles) => (
+        <View style={[_style.style_checkbox_inline_checkbox_item_view, viewStyle]}>
           <Image
-            style={[styles.style_checkbox_inline_checkbox_item_image]}
+            style={[_style.style_checkbox_inline_checkbox_item_image]}
             source={checked ? require('./image/gender_clicked.png') : require('./image/gender_normal.png')}
           />
 
-          <Text numberOfLines={numberOfLines} style={[styles.style_checkbox_inline_checkbox_item_text, textStyle]}>
+          <Text numberOfLines={numberOfLines} style={[_style.style_checkbox_inline_checkbox_item_text, textStyle]}>
             {children}
           </Text>
         </View>
       ),
-      list_checkbox: (
+      list_checkbox: () => (
         <List.Item
           borderBottom={borderBottom}
           label={<Text numberOfLines={numberOfLines}>{children}</Text>}
@@ -99,9 +90,16 @@ class Item extends React.Component<CheckboxItemProps> {
     };
 
     return (
-      <TouchableWithoutFeedback key={value} onPress={this.onPress}>
-        {ItemStyle[`${layout}_${type}`] || null}
-      </TouchableWithoutFeedback>
+      <WithTheme themeStyles={styles}>
+        {(_style) => {
+          const item = ItemStyle[`${layout}_${type}`];
+          return (
+            <TouchableWithoutFeedback key={value} onPress={this.onPress}>
+              {(item && item(_style)) || null}
+            </TouchableWithoutFeedback>
+          );
+        }}
+      </WithTheme>
     );
   }
 }
@@ -111,16 +109,16 @@ export default class Checkbox extends React.Component<CheckboxProps, any> {
 
   constructor(props: CheckboxProps) {
     super(props);
-    const { defaultValue, value } = props;
+    const { defaultValue } = props;
     this.state = {
-      checkedValues: value || defaultValue || []
+      checkedValues: defaultValue || []
     };
   }
 
   componentWillReceiveProps(nextProps: CheckboxProps) {
-    const { defaultValue, value } = nextProps;
+    const { defaultValue } = nextProps;
     this.setState({
-      checkedValues: value || defaultValue || []
+      checkedValues: defaultValue || []
     });
   }
 
@@ -151,16 +149,22 @@ export default class Checkbox extends React.Component<CheckboxProps, any> {
     });
   };
 
-  warpStyle = ({ style }: { style: StyleProp<ViewStyle> }) => {
+  renderWarp = ({ style, _style }: { style: StyleProp<ViewStyle>; _style: CheckBoxStyles }) => {
     return {
-      list: <View style={[styles[`style_checkbox_list`], style]}>{this.renderChild(this.props)}</View>,
-      inline: <View style={[styles[`style_checkbox_inline`], style]}>{this.renderChild(this.props)}</View>
+      list: <View style={[_style[`style_checkbox_list`], style]}>{this.renderChild(this.props)}</View>,
+      inline: <View style={[_style[`style_checkbox_inline`], style]}>{this.renderChild(this.props)}</View>
     };
   };
 
   render() {
     const { style, layout = 'list' } = this.props;
 
-    return this.warpStyle({ style })[layout];
+    return (
+      <WithTheme themeStyles={styles}>
+        {(_style) => {
+          return this.renderWarp({ style, _style })[layout];
+        }}
+      </WithTheme>
+    );
   }
 }

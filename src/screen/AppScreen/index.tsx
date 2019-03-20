@@ -19,6 +19,7 @@ import Pagination from '../../components/Pagination';
 import { Slider } from '../../components/Slider';
 import Tab from '../../components/Tab';
 import { AppStore } from '../../store/AppStore';
+import Checkbox from '../../components/Checkbox';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -83,6 +84,12 @@ export default class App extends Component<Props> {
                 </List.Item>
                 <List.Item activeOpacity={1} showArrow={false}>
                   <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
+                </List.Item>
+                <List.Item showArrow={false}>
+                  <Checkbox defaultValue={['1', '2']} type={'tag'} layout={'inline'}>
+                    <Checkbox.Item value={'1'}>123</Checkbox.Item>
+                    <Checkbox.Item value={'2'}>123</Checkbox.Item>
+                  </Checkbox>
                 </List.Item>
               </List>
             </View>

@@ -95,7 +95,7 @@ class Item extends React.PureComponent<ListItemProps> {
     );
 
     return touchable ? (
-      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={activeOpacity}>
+      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={!onPress ? 1 : activeOpacity}>
         {viewContainer}
       </TouchableOpacity>
     ) : (
