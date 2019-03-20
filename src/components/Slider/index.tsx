@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dimensions, StyleProp, ViewStyle } from 'react-native';
+import { Dimensions, StyleProp, View, ViewStyle } from 'react-native';
 import ViewOverflow from '../overflow';
-import { SliderLine } from './SliderLine';
+import { WithTheme } from '../Theme';
 import { SliderWrap } from './SliderWrap';
 import { sliderWrapWidth, styles } from './style';
 
@@ -140,23 +140,29 @@ export class Slider extends React.Component<SliderProps> {
   render() {
     const { showLeft, showPopover, startMessage = '', endMessage = '', style } = this.props;
     return (
-      <ViewOverflow style={[styles.style_slider_container_view, style]} onLayout={this.onLayout}>
-        {showLeft ? (
-          <SliderWrap
-            showPopover={showPopover}
-            message={startMessage}
-            refs={(ref: any) => (this.startWrap = ref)}
-            onDrag={this.onDragStart}
-          />
-        ) : null}
-        <SliderLine refs={(ref: any) => (this.lineWrap = ref)} showLeft={showLeft} />
-        <SliderWrap
-          showPopover={showPopover}
-          message={endMessage}
-          refs={(ref: any) => (this.endWrap = ref)}
-          onDrag={this.onDragEnd}
-        />
-      </ViewOverflow>
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <ViewOverflow style={[_style.style_slider_container_view, style]} onLayout={this.onLayout}>
+            {showLeft ? (
+              <SliderWrap
+                showPopover={showPopover}
+                message={startMessage}
+                refs={(ref: any) => (this.startWrap = ref)}
+                onDrag={this.onDragStart}
+              />
+            ) : null}
+            <View style={[_style.style_slider_line_container]}>
+              <View style={[_style.style_slider_line_active]} ref={(ref: any) => (this.lineWrap = ref)} />
+            </View>
+            <SliderWrap
+              showPopover={showPopover}
+              message={endMessage}
+              refs={(ref: any) => (this.endWrap = ref)}
+              onDrag={this.onDragEnd}
+            />
+          </ViewOverflow>
+        )}
+      </WithTheme>
     );
   }
 }
