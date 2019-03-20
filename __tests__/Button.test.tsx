@@ -10,16 +10,16 @@ const createTestProps = (props: Object) => ({
 });
 
 describe('Button', () => {
-  describe('rendering', () => {
-    let wrapper: ReactWrapper;
-    const onPress = sinon.spy();
-    let touchableWithoutFeedback: ReactWrapper;
-    beforeEach(() => {
-      wrapper = mount(<Button onPress={onPress}>Button</Button>);
-      touchableWithoutFeedback = wrapper.find(TouchableWithoutFeedback).first();
-    });
+  let wrapper: ReactWrapper;
+  const onPress = sinon.spy();
+  let touchableWithoutFeedback: ReactWrapper;
+  beforeEach(() => {
+    wrapper = mount(<Button onPress={onPress}>Button</Button>);
+    touchableWithoutFeedback = wrapper.find(TouchableWithoutFeedback).first();
+  });
 
-    it('capture snapshot of Button', () => {
+  describe('rendering', () => {
+    it('组件快照', () => {
       const renderedValue = renderer.create(<Button>Button</Button>).toJSON();
       expect(renderedValue).toMatchSnapshot();
     });
@@ -31,14 +31,15 @@ describe('Button', () => {
     it('应该渲染子节点', () => {
       expect(wrapper.contains('Button')).toBe(true);
     });
-
+  });
+  describe('onPressing', () => {
     it('单击Button组件，执行onPress方法', () => {
       let props: any = touchableWithoutFeedback.props();
       props.onPress();
       expect(onPress.calledOnce).toBeTruthy();
     });
 
-    it('点击<TouchableWithoutFeedback/>标签更改state:{pressIn: false -> true -> false}', () => {
+    it('点击Button组件，更改state:{pressIn: false -> true -> false}', () => {
       let props: any = touchableWithoutFeedback.props();
       props.onPressIn();
       expect(wrapper.state('pressIn')).toBe(true);

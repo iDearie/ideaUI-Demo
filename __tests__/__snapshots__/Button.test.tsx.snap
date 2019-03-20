@@ -45,3 +45,49 @@ exports[`Button rendering capture snapshot of Button 1`] = `
   </Text>
 </View>
 `;
+
+exports[`Button rendering 组件快照 1`] = `
+<View
+  accessible={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ff6644",
+        "borderRadius": 4,
+        "paddingHorizontal": 40,
+      },
+      Object {
+        "height": 36,
+      },
+      undefined,
+      null,
+      null,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 15,
+          "lineHeight": 34,
+        },
+        undefined,
+        null,
+      ]
+    }
+  >
+    Button
+  </Text>
+</View>
+`;
