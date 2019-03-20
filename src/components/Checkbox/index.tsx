@@ -31,17 +31,27 @@ class Item extends React.Component<CheckboxItemProps> {
     const { onChange, value } = this.props;
     onChange && onChange(value);
   };
+
+  static defaultProps: CheckboxItemProps = {
+    type: 'tag',
+    checkedValues: [],
+    layout: 'inline',
+    value: '',
+    borderBottom: 0.5,
+    numberOfLines: 1
+  };
+
   render() {
     const {
       textStyle,
       viewStyle,
       children,
-      type = 'tag',
+      type,
       checkedValues = [],
       value,
-      layout = 'inline',
-      borderBottom = 0.5,
-      numberOfLines = 1
+      layout,
+      borderBottom,
+      numberOfLines
     } = this.props;
     const checked = checkedValues.includes(value);
 
