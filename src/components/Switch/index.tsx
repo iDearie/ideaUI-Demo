@@ -1,5 +1,6 @@
 import React from 'react';
 import { Animated, TouchableWithoutFeedback, View } from 'react-native';
+import { WithTheme } from '../Theme';
 import { styles } from './style';
 
 interface SwitchProps {
@@ -46,15 +47,19 @@ export default class Switch extends React.Component<SwitchProps> {
   render() {
     const { translateX, checked } = this.state;
     return (
-      <TouchableWithoutFeedback onPress={this.onPress}>
-        <View
-          style={[
-            styles.style_switch_container,
-            checked ? styles.style_switch_container_checked : styles.style_switch_container_unchecked
-          ]}>
-          <Animated.View style={[styles.style_switch_warp, { transform: [{ translateX: translateX }] }]} />
-        </View>
-      </TouchableWithoutFeedback>
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <TouchableWithoutFeedback onPress={this.onPress}>
+            <View
+              style={[
+                _style.style_switch_container,
+                checked ? _style.style_switch_container_checked : _style.style_switch_container_unchecked
+              ]}>
+              <Animated.View style={[_style.style_switch_warp, { transform: [{ translateX: translateX }] }]} />
+            </View>
+          </TouchableWithoutFeedback>
+        )}
+      </WithTheme>
     );
   }
 }
