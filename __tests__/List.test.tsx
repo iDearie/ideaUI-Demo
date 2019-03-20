@@ -30,7 +30,7 @@ describe('List', () => {
       );
     });
 
-    it('TouchableOpacity 标签渲染正确', () => {
+    it('TouchableOpacity 标签渲染', () => {
       expect(wrapper.find(TouchableOpacity)).toHaveLength(1);
       const onPress = sinon.spy();
       wrapper.setProps({ onPress });
@@ -43,11 +43,11 @@ describe('List', () => {
       expect(onPress.calledOnce).toBe(false);
     });
 
-    it('children渲染正确', () => {
+    it('children渲染', () => {
       expect(wrapper.find(Button)).toHaveLength(1);
     });
 
-    it('label 渲染正确', () => {
+    it('label 渲染', () => {
       expect(
         wrapper.findWhere((node) => {
           const text = node.text();
@@ -57,7 +57,7 @@ describe('List', () => {
       ).toHaveLength(1);
     });
 
-    it('箭头渲染正确', () => {
+    it('箭头渲染', () => {
       const mapItem = (node: ReactWrapper<any, any>) => {
         const type = node.type();
         const source = node.prop('source') && node.prop('source').testUri;
@@ -68,7 +68,7 @@ describe('List', () => {
       expect(wrapper.findWhere(mapItem)).toHaveLength(0);
     });
 
-    it('下边框渲染正确', () => {
+    it('下边框渲染', () => {
       wrapper.setProps({ borderBottom: 1 });
       const borderBottomWrapper = wrapper.findWhere((node) => {
         const type = node.type();

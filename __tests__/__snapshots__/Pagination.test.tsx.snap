@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination 组件快照 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "borderColor": "#ff6644",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 42,
+          "paddingHorizontal": 40,
+        },
+        Object {
+          "height": 32,
+        },
+        Array [
+          Object {
+            "paddingHorizontal": 10,
+          },
+        ],
+        null,
+        Object {
+          "backgroundColor": "#ccc",
+          "borderColor": "#ccc",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#ff6644",
+            "textAlign": "center",
+          },
+          Object {
+            "fontSize": 13,
+            "lineHeight": 30,
+          },
+          undefined,
+          Object {
+            "color": "#fff",
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      上一页
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+        },
+      ]
+    }
+  >
+    <Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ff6644",
+            },
+          ]
+        }
+      >
+        1
+      </Text>
+       / 
+      20
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "borderColor": "#ff6644",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 42,
+          "paddingHorizontal": 40,
+        },
+        Object {
+          "height": 32,
+        },
+        Array [
+          Object {
+            "paddingHorizontal": 10,
+          },
+        ],
+        null,
+        null,
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#ff6644",
+            "textAlign": "center",
+          },
+          Object {
+            "fontSize": 13,
+            "lineHeight": 30,
+          },
+          undefined,
+          null,
+        ]
+      }
+    >
+      下一页
+    </Text>
+  </View>
+</View>
+`;

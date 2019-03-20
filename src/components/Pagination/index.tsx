@@ -37,6 +37,13 @@ class Pagination extends Component<PaginationProps> {
     };
   }
 
+  componentWillReceiveProps(nextProps: PaginationProps) {
+    const { current } = nextProps;
+    this.setState({
+      current
+    });
+  }
+
   onPressPrev = () => {
     const { current } = this.state;
     const { onChange } = this.props;
