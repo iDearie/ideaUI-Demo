@@ -1,24 +1,17 @@
 import * as React from 'react';
 import { Text, View, ViewStyle, TextStyle, StyleProp } from 'react-native';
 import { createForm } from 'rc-form';
-import { styles } from './styls';
-import List from '../List';
+import { styles } from './styles';
+import List, { ListItemProps } from '../List';
+import { BaseProps } from '../base/Props';
 const { Item: ListItem } = List;
 
-interface FormItemProps {
+interface FormItemProps extends ListItemProps, BaseProps {
   viewStyle: StyleProp<ViewStyle>; // Item 根节点样式
   labelStyle: StyleProp<TextStyle>; // Item label节点样式
   extendStyle: StyleProp<ViewStyle>; // Item 扩展组件样式
-  onPress: () => void; // Item 点击方法
-  separate: number; // Item 分隔符
-  borderBottom?: number; // Item 下边框
-  label: string; // Item label文字
-  error?: string[]; // Item 错误文案
-  activeOpacity?: number;
-  showArrow?: boolean;
-  disabled?: boolean;
-  touchable?: boolean;
-  children: any;
+  onPress: () => void;
+  children: any; // Item 点击方法
 }
 
 interface FormProps {

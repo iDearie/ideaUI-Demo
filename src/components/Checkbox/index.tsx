@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Image, StyleProp, Text, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import { BaseProps } from '../base/Props';
 import List from '../List';
 import { WithTheme } from '../Theme';
 import { CheckBoxStyles, styles } from './style';
@@ -14,15 +15,11 @@ export interface CheckboxProps {
   children: any;
 }
 
-export interface CheckboxItemProps {
+export interface CheckboxItemProps extends BaseProps {
   textStyle?: StyleProp<TextStyle>; // Item: 文本节点样式
   viewStyle?: StyleProp<ViewStyle>; // Item 组件 根节点样式
   value: string; // Item 组件 value
-  type?: 'checkbox' | 'tag';
-  layout?: 'list' | 'inline';
   borderBottom?: number; // list 布局下的下边框
-  onChange?: (activeKey: any) => void;
-  checkedValues?: Array<string>; // 选中的value集合
   numberOfLines?: number;
 }
 

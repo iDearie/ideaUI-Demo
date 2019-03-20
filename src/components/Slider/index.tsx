@@ -4,10 +4,11 @@ import ViewOverflow from '../overflow';
 import { WithTheme } from '../Theme';
 import { SliderWrap } from './SliderWrap';
 import { sliderWrapWidth, styles } from './style';
+import { BaseProps } from '../base/Props';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-interface SliderProps {
+interface SliderProps extends BaseProps {
   max: number; // 最大值
   showLeft?: boolean; // 是否展示左侧滑块
   showPopover?: boolean; // 是否展示Popover

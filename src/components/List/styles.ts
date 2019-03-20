@@ -1,6 +1,5 @@
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { Theme } from './../Theme/index';
-import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
-import { border_color_1, text_color_2, text_color_1 } from './../CustomTheme/index';
 
 export interface ListItemStyles {
   container: ViewStyle;

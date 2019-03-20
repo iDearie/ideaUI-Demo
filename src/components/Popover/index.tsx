@@ -4,8 +4,9 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import ViewOverflow from '../overflow';
 import { styles, PopoverStyles } from './style';
 import { WithTheme } from '../Theme';
+import { BaseProps } from '../base/Props';
 
-interface PopoverProps {
+interface PopoverProps extends BaseProps {
   direction?: 'top' | 'bottom' | 'left' | 'right';
   gap?: number;
   isVisible?: boolean;

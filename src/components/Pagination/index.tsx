@@ -3,8 +3,9 @@ import { Text, View } from 'react-native';
 import { Button } from '../Button';
 import { styles } from './style';
 import { WithTheme } from '../Theme';
+import { BaseProps } from '../base/Props';
 
-interface PaginationProps {
+interface PaginationProps extends BaseProps {
   current: number; //当前页号
   total: number; //数据总数
   simple: boolean; //是否隐藏数值

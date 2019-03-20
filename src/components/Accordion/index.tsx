@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Animated } from 'react-native';
-import { styles } from './style';
-import List from '../List';
+import { Text, View } from 'react-native';
+import { BaseProps } from '../base/Props';
 import Icon from '../Icon';
+import List from '../List';
+import { WithTheme } from '../Theme';
+import { styles } from './style';
 
-interface PanelProps {
+interface PanelProps extends BaseProps {
   header: React.ReactElement | string;
   key: string;
-  activeKeys?: string[];
 }
 
 class Panel extends Component<PanelProps> {
@@ -18,22 +19,25 @@ class Panel extends Component<PanelProps> {
   };
   render() {
     const { children, header, activeKeys = [], key } = this.props;
-    console.log('TCL: render -> key', this);
     return (
-      <View>
-        {header ? (
-          <View style={[styles.header_container]}>
-            <List.Item
-              showArrow={false}
-              borderBottom={0}
-              onPress={this.triggerPanel}
-              label={React.isValidElement(header) ? header : <Text>{header}</Text>}>
-              <Icon name={'chevron-down'} />
-            </List.Item>
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <View>
+            {header ? (
+              <View style={[_style.header_container]}>
+                <List.Item
+                  showArrow={false}
+                  borderBottom={0}
+                  onPress={this.triggerPanel}
+                  label={React.isValidElement(header) ? header : <Text>{header}</Text>}>
+                  <Icon name={'chevron-down'} />
+                </List.Item>
+              </View>
+            ) : null}
+            <View>{children}</View>
           </View>
-        ) : null}
-        <View>{children}</View>
-      </View>
+        )}
+      </WithTheme>
     );
   }
 }

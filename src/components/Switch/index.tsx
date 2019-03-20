@@ -2,8 +2,9 @@ import React from 'react';
 import { Animated, TouchableWithoutFeedback, View } from 'react-native';
 import { WithTheme } from '../Theme';
 import { styles } from './style';
+import { BaseProps } from '../base/Props';
 
-interface SwitchProps {
+interface SwitchProps extends BaseProps {
   checked?: boolean; // 选中状态 默认false
   disabled?: boolean; // 禁用状态 默认false
   onChange?: (checked: boolean) => void; // 改变状态回调方法 参数为当前选中状态

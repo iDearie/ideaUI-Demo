@@ -2,6 +2,7 @@ import React from 'react';
 import { Animated, Dimensions, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { styles } from './style';
 import { WithTheme } from '../Theme';
+import { BaseProps } from '../base/Props';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -21,7 +22,7 @@ interface TabItem {
   name: string;
 }
 
-interface TabProps {
+interface TabProps extends BaseProps {
   titleList?: TabItem[];
   choice?: string;
   onChangeTab?: Function;

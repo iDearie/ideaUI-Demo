@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { border_color_1 } from './../CustomTheme/index';
+import { Theme } from '../Theme';
 
-export const styles = StyleSheet.create({
-  header_container: {
-    height: 50,
-    justifyContent: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: border_color_1
-  }
-});
+export const styles = (theme: Theme) =>
+  StyleSheet.create({
+    header_container: {
+      height: 50,
+      justifyContent: 'center',
+      borderBottomWidth: 1,
+      borderBottomColor: theme.border_color_1
+    }
+  });
