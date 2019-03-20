@@ -16,6 +16,14 @@ interface ButtonProps {
 }
 
 export class Button extends React.Component<ButtonProps> {
+  static defaultProps: ButtonProps = {
+    type: 'default',
+    disabled: false,
+    disabledType: 'neutral',
+    bgColor: 'base',
+    size: 'default'
+  };
+
   state = {
     pressIn: false
   };
@@ -33,17 +41,7 @@ export class Button extends React.Component<ButtonProps> {
   };
 
   render() {
-    const {
-      children,
-      type = 'default',
-      disabled = false,
-      disabledType = 'neutral',
-      bgColor = 'base',
-      size = 'default',
-      viewStyle,
-      textStyle,
-      onPress
-    } = this.props;
+    const { children, type, disabled, disabledType, bgColor, size, viewStyle, textStyle, onPress } = this.props;
 
     const { pressIn } = this.state;
     return (
