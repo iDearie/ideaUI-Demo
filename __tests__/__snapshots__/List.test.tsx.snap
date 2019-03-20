@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List 组件快照 1`] = `
+<View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "white",
+          },
+          Object {
+            "marginBottom": 0,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderBottomColor": "#eaeaea",
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "space-between",
+              "marginHorizontal": 16,
+            },
+            undefined,
+            Object {
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontSize": 14,
+                },
+              ]
+            }
+          >
+            label
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "flex-end",
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "100%",
+              },
+              undefined,
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ff6644",
+                  "borderRadius": 4,
+                  "paddingHorizontal": 40,
+                },
+                Object {
+                  "height": 36,
+                },
+                undefined,
+                null,
+                null,
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#fff",
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "fontSize": 15,
+                    "lineHeight": 34,
+                  },
+                  undefined,
+                  null,
+                ]
+              }
+            />
+          </View>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/List/arrow.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 13,
+                  "width": 13,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

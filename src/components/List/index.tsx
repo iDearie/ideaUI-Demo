@@ -12,7 +12,7 @@ import {
 import { styles, ListItemStyles } from './styles';
 import { WithTheme } from '../Theme';
 
-interface ListItemProps {
+export interface ListItemProps {
   viewStyle?: StyleProp<ViewStyle>; // Item组件根节点样式
   label?: string | number | React.ReactElement<any> | React.ReactElement<any>[]; // 组件左侧文字或者组件
   icon?: any; // 左侧icon
@@ -28,7 +28,7 @@ interface ListItemProps {
   children: React.ReactElement<any> | React.ReactElement<any>[] | string | number | null;
 }
 
-interface ListProps {
+export interface ListProps {
   style?: StyleProp<ViewStyle>;
 }
 
@@ -38,6 +38,15 @@ class Item extends React.PureComponent<ListItemProps> {
     return React.cloneElement(children as React.ReactElement, {
       ...otherProps
     });
+  };
+
+  static defaultProps = {
+    separate: 0,
+    borderBottom: 0.5,
+    activeOpacity: 0.2,
+    showArrow: true,
+    disabled: false,
+    touchable: true
   };
 
   render() {

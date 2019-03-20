@@ -5,10 +5,6 @@ import { TouchableWithoutFeedback } from 'react-native';
 import sinon from 'sinon';
 import { Button } from '../src/components/Button';
 
-const createTestProps = (props: Object) => ({
-  ...props
-});
-
 describe('Button', () => {
   let wrapper: ReactWrapper;
   const onPress = sinon.spy();
