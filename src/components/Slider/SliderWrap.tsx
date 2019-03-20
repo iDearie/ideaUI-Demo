@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, PanResponder, Text, View, StyleProp, ViewStyle } from 'react-native';
 import ViewOverflow from '../overflow';
-import { Popover } from './Popover';
+import { Popover } from '../Popover';
 import { styles } from './style';
 
 interface SliderWrapProps {
