@@ -1,8 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Theme } from '../Theme';
 
+export interface PaginationStyles {
+  container: ViewStyle;
+  number: ViewStyle;
+  current: TextStyle;
+  btn: ViewStyle;
+}
+
 export const styles = (theme: Theme) =>
-  StyleSheet.create({
+  StyleSheet.create<PaginationStyles>({
     container: {
       flexDirection: 'row',
       alignItems: 'center',
