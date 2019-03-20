@@ -12,7 +12,7 @@ export const styles = (theme: Theme) =>
       borderWidth: 1
     },
     style_switch_container_checked: {
-      backgroundColor: theme.bg_color_1,
+      backgroundColor: theme.main_bg_color,
       borderColor: theme.main_border_color
     },
     style_switch_container_unchecked: {
