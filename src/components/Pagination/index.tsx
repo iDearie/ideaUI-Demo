@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Button } from '../Button';
 import { styles } from './style';
+import { WithTheme } from '../Theme';
 
 interface PaginationProps {
   current: number; //当前页号
   total: number; //数据总数
   simple: boolean; //是否隐藏数值
   disabled: boolean; //禁用状态
-  locale: { prevText: React.ReactElement | string; nextText: React.ReactElement | string };
+  locale: { prevText: string; nextText: string };
   onChange?: (e: { current: number }) => void;
 }
 
@@ -65,31 +66,35 @@ class Pagination extends Component<PaginationProps> {
     const { current } = this.state;
     const { prevText, nextText } = locale;
     return (
-      <View style={[styles.container]}>
-        <Button
-          disabled={disabled || current === 1}
-          onPress={this.onPressPrev}
-          type={'ghost'}
-          size={'small'}
-          viewStyle={[styles.btn]}>
-          {prevText}
-        </Button>
-        <View style={[styles.number]}>
-          {!simple ? (
-            <Text>
-              <Text style={[styles.current]}>{current}</Text> / {total}
-            </Text>
-          ) : null}
-        </View>
-        <Button
-          onPress={this.onPressNext}
-          disabled={disabled || current === total}
-          type={'ghost'}
-          size={'small'}
-          viewStyle={[styles.btn]}>
-          {nextText}
-        </Button>
-      </View>
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <View style={[_style.container]}>
+            <Button
+              disabled={disabled || current === 1}
+              onPress={this.onPressPrev}
+              type={'ghost'}
+              size={'small'}
+              viewStyle={[_style.btn]}>
+              {prevText}
+            </Button>
+            <View style={[_style.number]}>
+              {!simple ? (
+                <Text>
+                  <Text style={[_style.current]}>{current}</Text> / {total}
+                </Text>
+              ) : null}
+            </View>
+            <Button
+              onPress={this.onPressNext}
+              disabled={disabled || current === total}
+              type={'ghost'}
+              size={'small'}
+              viewStyle={[_style.btn]}>
+              {nextText}
+            </Button>
+          </View>
+        )}
+      </WithTheme>
     );
   }
 }

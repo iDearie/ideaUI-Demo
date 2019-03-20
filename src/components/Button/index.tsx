@@ -12,6 +12,7 @@ interface ButtonProps {
   bgColor?: 'base' | 'aux';
   size?: 'large' | 'default' | 'small'; // 按钮大小
   onPress?: (e: any) => void;
+  children: string;
 }
 
 export class Button extends React.Component<ButtonProps> {

@@ -1,19 +1,21 @@
 import { StyleSheet } from 'react-native';
+import { Theme } from '../Theme';
 
-export const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  number: {
-    flex: 1,
-    alignItems: 'center'
-  },
-  current: {
-    color: '#ff6644'
-  },
-  btn: {
-    paddingHorizontal: 10
-  }
-});
+export const styles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    number: {
+      flex: 1,
+      alignItems: 'center'
+    },
+    current: {
+      color: theme.main_text_color
+    },
+    btn: {
+      paddingHorizontal: 10
+    }
+  });
