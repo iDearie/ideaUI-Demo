@@ -65,6 +65,7 @@ export default class App extends Component<Props> {
                     viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
                     提交
                   </Button>
+                  <Button viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>提交</Button>
                   <Switch />
                 </Accordion.Panel>
               </Accordion>

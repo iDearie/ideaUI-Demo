@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import { Theme } from '../theme';
 
 export default (theme: Theme) => {
-  console.log('TCL: theme', theme);
   return {
     style_btn_default_container: {
       backgroundColor: theme.main_bg_color,
@@ -40,7 +39,7 @@ export default (theme: Theme) => {
     style_btn_default_disabled_status_container: {
       backgroundColor: '#FFB2A1'
     },
-    style_btn_default_prassIn_container: {
+    style_btn_default_pressIn_container: {
       opacity: 0.8
     },
     style_btn_ghost_container: {
@@ -62,7 +61,7 @@ export default (theme: Theme) => {
     style_btn_ghost_disabled_status_container: {
       backgroundColor: '#FFB2A1'
     },
-    style_btn_ghost_prassIn_container: {
+    style_btn_ghost_pressIn_container: {
       backgroundColor: '#FFEFEC'
     }
   };
