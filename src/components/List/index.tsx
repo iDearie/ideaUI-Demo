@@ -9,7 +9,8 @@ import {
   View,
   ViewStyle
 } from 'react-native';
-import { styles } from './styles';
+import { styles, ListItemStyles } from './styles';
+import { WithTheme } from '../Theme';
 
 interface ListItemProps {
   viewStyle?: StyleProp<ViewStyle>; // Item组件根节点样式
@@ -56,50 +57,56 @@ class Item extends React.PureComponent<ListItemProps> {
       children
     } = this.props;
 
-    const viewContainer = (
-      <View style={[styles.container, { marginBottom: separate }]}>
+    const renderContainer = (_style: ListItemStyles) => (
+      <View style={[_style.container, { marginBottom: separate }]}>
         <View
           style={[
-            styles.style_list_item_container,
+            _style.style_list_item_container,
             viewStyle,
             borderBottom ? { borderBottomWidth: borderBottom } : null
           ]}>
           {label ? (
-            <View style={[styles.style_label_view_container]}>
-              {icon ? <Image source={icon} style={[styles.style_label_view_container_icon]} /> : null}
+            <View style={[_style.style_label_view_container]}>
+              {icon ? <Image source={icon} style={[_style.style_label_view_container_icon]} /> : null}
               {typeof label === 'string' ? (
-                <Text style={[labelStyle ? labelStyle : styles.defaultLabelStyle]}>{label}</Text>
+                <Text style={[labelStyle ? labelStyle : _style.defaultLabelStyle]}>{label}</Text>
               ) : (
                 <View style={[labelStyle]}>{label}</View>
               )}
             </View>
           ) : null}
           {!children || typeof children === 'string' || typeof children === 'number' ? (
-            <View style={[styles.styles_extend_component_container]}>
-              {children ? <Text style={[styles.styles_extend_text, extendStyle]}>{children}</Text> : null}
-              {showArrow ? <Image style={[styles.arrow_png]} source={require('./arrow.png')} /> : null}
+            <View style={[_style.styles_extend_component_container]}>
+              {children ? <Text style={[_style.styles_extend_text, extendStyle]}>{children}</Text> : null}
+              {showArrow ? <Image style={[_style.arrow_png]} source={require('./arrow.png')} /> : null}
             </View>
           ) : (
             <View
               style={[
-                styles.style_open_view_container,
+                _style.style_open_view_container,
                 extendStyle,
-                !label ? styles.style_open_view_container_no_label : null
+                !label ? _style.style_open_view_container_no_label : null
               ]}>
               {this.renderChild(this.props)}
-              {showArrow ? <Image style={[styles.arrow_png]} source={require('./arrow.png')} /> : null}
+              {showArrow ? <Image style={[_style.arrow_png]} source={require('./arrow.png')} /> : null}
             </View>
           )}
         </View>
       </View>
     );
 
-    return touchable ? (
-      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={!onPress ? 1 : activeOpacity}>
-        {viewContainer}
-      </TouchableOpacity>
-    ) : (
-      viewContainer
+    return (
+      <WithTheme themeStyles={styles}>
+        {(_style) =>
+          touchable ? (
+            <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={!onPress ? 1 : activeOpacity}>
+              {renderContainer(_style)}
+            </TouchableOpacity>
+          ) : (
+            renderContainer(_style)
+          )
+        }
+      </WithTheme>
     );
   }
 }
