@@ -1,6 +1,7 @@
 import React from 'react';
 import { Animated, Dimensions, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { styles } from './style';
+import { WithTheme } from '../Theme';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -87,41 +88,49 @@ export default class Tab extends React.Component<TabProps> {
     const { animatedValue, choiceIndex } = this.state;
     const children = React.Children.toArray(this.props.children);
     return (
-      <View style={[styles.style_tab_container]} onLayout={this.containerLayout}>
-        <View style={[styles.style_tab_title_container]}>
-          {titleList.map((item, index) => {
-            const { code, name } = item;
-            return (
-              <TouchableWithoutFeedback onPress={() => this.onPress({ item })} key={code}>
-                <View style={[styles.style_tab_title_item_container]}>
-                  <Text style={[styles.style_tab_title_item_text, choiceIndex === index ? { color: '#ff6644' } : null]}>
-                    {name}
-                  </Text>
-                </View>
-              </TouchableWithoutFeedback>
-            );
-          })}
-          <Animated.View
-            style={[
-              styles.style_tab_title_active_container,
-              {
-                width: this.titleItemWidth,
-                transform: [{ translateX: animatedValue }]
-              }
-            ]}>
-            <View style={[styles.style_tab_title_active_wrap]} />
-          </Animated.View>
-        </View>
-        <ScrollView
-          contentContainerStyle={[styles.style_tab_wrap, { width: children.length * windowWidth, height: '100%' }]}
-          ref={this.getRef}
-          scrollEnabled={false}
-          horizontal>
-          {React.Children.map(this.props.children, (child) => {
-            return <View style={{ flex: 1, height: '100%', overflow: 'hidden' }}>{child}</View>;
-          })}
-        </ScrollView>
-      </View>
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <View style={[_style.style_tab_container]} onLayout={this.containerLayout}>
+            <View style={[_style.style_tab_title_container]}>
+              {titleList.map((item, index) => {
+                const { code, name } = item;
+                return (
+                  <TouchableWithoutFeedback onPress={() => this.onPress({ item })} key={code}>
+                    <View style={[_style.style_tab_title_item_container]}>
+                      <Text
+                        style={[
+                          _style.style_tab_title_item_text,
+                          choiceIndex === index ? _style.style_tab_title_active_item_text : null
+                        ]}>
+                        {name}
+                      </Text>
+                    </View>
+                  </TouchableWithoutFeedback>
+                );
+              })}
+              <Animated.View
+                style={[
+                  _style.style_tab_title_active_container,
+                  {
+                    width: this.titleItemWidth,
+                    transform: [{ translateX: animatedValue }]
+                  }
+                ]}>
+                <View style={[_style.style_tab_title_active_wrap]} />
+              </Animated.View>
+            </View>
+            <ScrollView
+              contentContainerStyle={[_style.style_tab_wrap, { width: children.length * windowWidth, height: '100%' }]}
+              ref={this.getRef}
+              scrollEnabled={false}
+              horizontal>
+              {React.Children.map(this.props.children, (child) => {
+                return <View style={_style.style_item_container}>{child}</View>;
+              })}
+            </ScrollView>
+          </View>
+        )}
+      </WithTheme>
     );
   }
 }
