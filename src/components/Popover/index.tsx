@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 
 import ViewOverflow from '../overflow';
-import { styles } from './style';
+import { styles, PopoverStyles } from './style';
+import { WithTheme } from '../Theme';
 
 interface PopoverProps {
   direction?: 'top' | 'bottom' | 'left' | 'right';
@@ -44,48 +45,56 @@ export class Popover extends React.Component<PopoverProps> {
     };
   }
 
-  dirEnum: { [key: string]: DirObject } = {
-    top: {
-      setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
-        this.viewRef.setNativeProps({
-          top: -(gap + customHeight + 4),
-          left: (childWidth - customWidth) / 2
-        });
-      },
-      borderStyle: styles.topTriangle
+  dirEnum: { [key: string]: (_style: PopoverStyles) => DirObject } = {
+    top: (_style) => {
+      return {
+        setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
+          this.viewRef.setNativeProps({
+            top: -(gap + customHeight + 4),
+            left: (childWidth - customWidth) / 2
+          });
+        },
+        borderStyle: _style.topTriangle
+      };
     },
-    bottom: {
-      setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
-        this.viewRef.setNativeProps({
-          bottom: -(gap + customHeight + 4),
-          left: (childWidth - customWidth) / 2
-        });
-      },
-      borderStyle: styles.bottomTriangle
+    bottom: (_style) => {
+      return {
+        setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
+          this.viewRef.setNativeProps({
+            bottom: -(gap + customHeight + 4),
+            left: (childWidth - customWidth) / 2
+          });
+        },
+        borderStyle: _style.bottomTriangle
+      };
     },
-    left: {
-      setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
-        this.viewRef.setNativeProps({
-          top: (childHeight - customHeight) / 2,
-          left: -(customWidth + gap + 4)
-        });
-      },
-      borderStyle: styles.leftTriangle
+    left: (_style) => {
+      return {
+        setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
+          this.viewRef.setNativeProps({
+            top: (childHeight - customHeight) / 2,
+            left: -(customWidth + gap + 4)
+          });
+        },
+        borderStyle: _style.leftTriangle
+      };
     },
-    right: {
-      setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
-        this.viewRef.setNativeProps({
-          top: (childHeight - customHeight) / 2,
-          right: -(customWidth + gap + 4)
-        });
-      },
-      borderStyle: styles.rightTriangle
+    right: (_style) => {
+      return {
+        setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
+          this.viewRef.setNativeProps({
+            top: (childHeight - customHeight) / 2,
+            right: -(customWidth + gap + 4)
+          });
+        },
+        borderStyle: _style.rightTriangle
+      };
     }
   };
 
-  layout = () => {
+  layout = (_style: PopoverStyles) => {
     const { direction = Popover.defaultProps.direction, gap = Popover.defaultProps.gap } = this.props;
-    this.dirObject = this.dirEnum[direction];
+    this.dirObject = this.dirEnum[direction](_style);
     this.childrenRef.measure((ox: number, oy: number, childWidth: number, childHeight: number) => {
       this.customViewRef.measure((ox: number, oy: number, customWidth: number, customHeight: number) => {
         this.dirObject.setPosition({
@@ -102,24 +111,28 @@ export class Popover extends React.Component<PopoverProps> {
   render() {
     const { isVisible, customView } = this.props;
     return (
-      <ViewOverflow style={{ position: 'relative', height: '100%' }}>
-        {isVisible ? (
-          <ViewOverflow
-            style={[{ position: 'absolute', zIndex: 9999, top: -500 }]}
-            onLayout={this.layout}
-            refs={(ref: any) => (this.viewRef = ref)}>
-            {React.cloneElement(customView as React.ReactElement, {
-              ref: (ref: any) => (this.customViewRef = ref)
+      <WithTheme themeStyles={styles}>
+        {(_style) => (
+          <ViewOverflow style={_style.style_popover_container}>
+            {isVisible ? (
+              <ViewOverflow
+                style={[_style.style_popover_wrap]}
+                onLayout={() => this.layout(_style)}
+                refs={(ref: any) => (this.viewRef = ref)}>
+                {React.cloneElement(customView as React.ReactElement, {
+                  ref: (ref: any) => (this.customViewRef = ref)
+                })}
+                <View style={[_style.triangle_container]}>
+                  <View style={[this.dirObject.borderStyle]} />
+                </View>
+              </ViewOverflow>
+            ) : null}
+            {React.cloneElement(this.props.children as React.ReactElement, {
+              ref: (ref: any) => (this.childrenRef = ref)
             })}
-            <View style={[styles.triangle_container]}>
-              <View style={[this.dirObject.borderStyle]} />
-            </View>
           </ViewOverflow>
-        ) : null}
-        {React.cloneElement(this.props.children as React.ReactElement, {
-          ref: (ref: any) => (this.childrenRef = ref)
-        })}
-      </ViewOverflow>
+        )}
+      </WithTheme>
     );
   }
 }
