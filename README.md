@@ -30,17 +30,23 @@
 - Theme - 已完成
 - Accordion - 60%
 - Button - 已完成
-- Checkbox - 80%
-- List - 80%
-- Form - 80%
-- Icon - 80%
-- Pagination - 80%
-- Slider - 80%
-- Switch - 80%
-- Tab - 80%
-- Popover - TODO
+- Checkbox - 100%
+- List - 100%
+- Form - 100%
+- Icon - 100%
+- Pagination - 100%
+- Slider - 100%
+- Switch - 100%
+- Tab - 100%
+- Popover - 80%
 - DatePickerView - TODO
 - FloatLayer - TODO
+
+## 测试用例
+
+- Button 组件 100%
+- List 组件 100%
+- Pagination 100%
 
 ## 组件详情
 
