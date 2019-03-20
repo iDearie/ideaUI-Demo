@@ -9,22 +9,17 @@
  */
 import { inject } from 'mobx-react';
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
-
 import Accordion from '../../components/Accordion';
 import { Button } from '../../components/Button';
+import Checkbox from '../../components/Checkbox';
 import List from '../../components/List';
 import Pagination from '../../components/Pagination';
 import { Slider } from '../../components/Slider';
 import Tab from '../../components/Tab';
 import { AppStore } from '../../store/AppStore';
-import Checkbox from '../../components/Checkbox';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu'
-});
+import Switch from '../../components/Switch';
 
 interface Props {
   navigation: NavigationScreenProp<null>;
@@ -70,6 +65,7 @@ export default class App extends Component<Props> {
                     viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
                     提交
                   </Button>
+                  <Switch />
                 </Accordion.Panel>
               </Accordion>
             </View>
