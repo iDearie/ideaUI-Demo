@@ -119,3 +119,28 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
     return React.Children.only(this.props.children);
   }
 }
+
+export const LocaleContext = React.createContext({
+  locale: { a: 1 },
+  toggleTheme: () => {
+    console.warn(123);
+  }
+});
+
+export class SwitchLocale extends React.Component<any, any> {
+  state = {
+    locale: { a: 1 },
+    toggleTheme: () => {
+      console.warn(123);
+    }
+  };
+
+  render() {
+    const { children } = this.props;
+    return (
+      <LocaleContext.Consumer>
+        {({ locale, toggleTheme }) => React.cloneElement(children, { locale, onPress: toggleTheme })}
+      </LocaleContext.Consumer>
+    );
+  }
+}

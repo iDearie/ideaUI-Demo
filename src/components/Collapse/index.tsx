@@ -5,7 +5,7 @@ import List from '../List';
 import { WithTheme } from '../Theme';
 import { styles } from './style';
 
-interface PanelProps extends AccordionProps {
+interface PanelProps extends CollapseProps {
   header: React.ReactElement | string;
   value: string;
 }
@@ -72,12 +72,12 @@ class Panel extends Component<PanelProps> {
   }
 }
 
-interface AccordionProps {
+interface CollapseProps {
   activeKeys?: string[];
   onChange?: (activeKeys: string[]) => void;
 }
 
-export default class Accordion extends Component<AccordionProps> {
+export default class Collapse extends Component<CollapseProps> {
   static Panel = Panel;
   render() {
     const { children, activeKeys } = this.props;

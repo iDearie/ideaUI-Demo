@@ -11,7 +11,7 @@ import { inject } from 'mobx-react';
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
-import Accordion from '../../components/Accordion';
+import Collapse from '../../components/Collapse';
 import { Button } from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
 import List from '../../components/List';
@@ -43,8 +43,8 @@ export default class App extends Component<Props> {
     console.log(`current`, current);
   };
 
-  onChangeAccordion = (activeKeys: string[]) => {
-    console.log('TCL: onChangeAccordion -> activeKeys', activeKeys);
+  onChangeCollapse = (activeKeys: string[]) => {
+    console.log('TCL: onChangeCollapse -> activeKeys', activeKeys);
   };
 
   render() {
@@ -55,15 +55,15 @@ export default class App extends Component<Props> {
         <View style={{ width: '100%' }}>
           <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
             <View>
-              <Accordion activeKeys={['list']} onChange={this.onChangeAccordion}>
-                <Accordion.Panel header={'List'} value={'list'}>
+              <Collapse activeKeys={['list']} onChange={this.onChangeCollapse}>
+                <Collapse.Panel header={'List'} value={'list'}>
                   <List>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                   </List>
-                </Accordion.Panel>
-                <Accordion.Panel header={'Button'} value={'button'}>
+                </Collapse.Panel>
+                <Collapse.Panel header={'Button'} value={'button'}>
                   <Button
                     type={'ghost'}
                     onPress={this.navToMine}
@@ -72,8 +72,8 @@ export default class App extends Component<Props> {
                   </Button>
                   <Button viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>提交</Button>
                   <Switch />
-                </Accordion.Panel>
-              </Accordion>
+                </Collapse.Panel>
+              </Collapse>
             </View>
             <View style={{ marginHorizontal: 20 }}>
               <Slider showLeft onChange={this.onChangeSlider} />
