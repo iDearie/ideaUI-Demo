@@ -8,9 +8,9 @@ import { BaseProps } from '../base/Props';
 interface PaginationProps extends BaseProps {
   current: number; //当前页号
   total: number; //数据总数
-  simple: boolean; //是否隐藏数值
-  disabled: boolean; //禁用状态
-  locale: { prevText: string; nextText: string };
+  simple?: boolean; //是否隐藏数值
+  disabled?: boolean; //禁用状态
+  locale?: { prevText: string; nextText: string };
   onChange?: (e: { current: number }) => void;
 }
 
