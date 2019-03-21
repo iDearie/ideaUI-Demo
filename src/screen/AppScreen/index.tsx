@@ -43,6 +43,10 @@ export default class App extends Component<Props> {
     console.log(`current`, current);
   };
 
+  onChangeAccordion = (activeKeys: string[]) => {
+    console.log('TCL: onChangeAccordion -> activeKeys', activeKeys);
+  };
+
   render() {
     const { appStore } = this.props;
     return (
@@ -50,15 +54,15 @@ export default class App extends Component<Props> {
         <View style={{ width: '100%' }}>
           <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
             <View>
-              <Accordion activeKeys={['list', 'button']}>
-                <Accordion.Panel header={'List'} key={'list'}>
+              <Accordion activeKeys={['list']} onChange={this.onChangeAccordion}>
+                <Accordion.Panel header={'List'} value={'list'}>
                   <List>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
                   </List>
                 </Accordion.Panel>
-                <Accordion.Panel header={'Button'} key={'button'}>
+                <Accordion.Panel header={'Button'} value={'button'}>
                   <Button
                     type={'ghost'}
                     onPress={this.navToMine}
