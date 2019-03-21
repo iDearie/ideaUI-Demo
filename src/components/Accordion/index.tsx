@@ -1,24 +1,50 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { Text, View } from 'react-native';
-import { BaseProps } from '../base/Props';
 import Icon from '../Icon';
 import List from '../List';
 import { WithTheme } from '../Theme';
 import { styles } from './style';
 
-interface PanelProps extends BaseProps {
+interface PanelProps extends AccordionProps {
   header: React.ReactElement | string;
-  key: string;
+  value: string;
 }
 
 class Panel extends Component<PanelProps> {
-  triggerPanel = () => {};
+  height: number;
 
-  getChildLayout = ({ nativeEvent }: any) => {
-    console.log('TCL: Panel -> getChildLayout -> layout', nativeEvent);
+  state: {
+    opened: boolean;
   };
+
+  constructor(props: PanelProps) {
+    super(props);
+    this.height = 0;
+    const { activeKeys = [], value } = props;
+    this.state = {
+      opened: activeKeys.includes(value)
+    };
+  }
+
+  triggerPanel = () => {
+    const { onChange, activeKeys = [], value } = this.props;
+    const { opened } = this.state;
+    this.setState({
+      opened: !opened
+    });
+    onChange && onChange(opened ? activeKeys.filter((v) => v !== value) : [...activeKeys, value]);
+  };
+
+  componentWillReceiveProps(nextProps: PanelProps) {
+    const { activeKeys = [], value } = nextProps;
+    this.setState({
+      opened: activeKeys.includes(value)
+    });
+  }
+
   render() {
-    const { children, header, activeKeys = [], key } = this.props;
+    const { children, header } = this.props;
+    const { opened } = this.state;
     return (
       <WithTheme themeStyles={styles}>
         {(_style) => (
@@ -28,13 +54,17 @@ class Panel extends Component<PanelProps> {
                 <List.Item
                   showArrow={false}
                   borderBottom={0}
+                  activeOpacity={1}
                   onPress={this.triggerPanel}
                   label={React.isValidElement(header) ? header : <Text>{header}</Text>}>
-                  <Icon name={'chevron-down'} />
+                  <Icon
+                    name={'chevron-down'}
+                    style={[_style.icon, { transform: [{ rotate: opened ? '180deg' : '0deg' }] }]}
+                  />
                 </List.Item>
               </View>
             ) : null}
-            <View>{children}</View>
+            <View style={[{ height: opened ? 'auto' : 1, overflow: 'hidden' }]}>{children}</View>
           </View>
         )}
       </WithTheme>
@@ -44,6 +74,7 @@ class Panel extends Component<PanelProps> {
 
 interface AccordionProps {
   activeKeys?: string[];
+  onChange?: (activeKeys: string[]) => void;
 }
 
 export default class Accordion extends Component<AccordionProps> {
@@ -51,7 +82,7 @@ export default class Accordion extends Component<AccordionProps> {
   render() {
     const { children, activeKeys } = this.props;
     return React.Children.map(children, (child) => {
-      return React.cloneElement(child as React.ReactElement, { activeKeys });
+      return React.cloneElement(child as React.ReactElement, { activeKeys, onChange: this.props.onChange });
     });
   }
 }

@@ -8,5 +8,8 @@ export const styles = (theme: Theme) =>
       justifyContent: 'center',
       borderBottomWidth: 1,
       borderBottomColor: theme.border_color_1
+    },
+    icon: {
+      color: theme.text_color_2
     }
   });
