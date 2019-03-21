@@ -1,9 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button } from '../Button';
-import { styles } from './style';
-import { WithTheme } from '../Theme';
 import { BaseProps } from '../base/Props';
+import { Button } from '../Button';
+import { WithTheme } from '../Theme';
+import { styles } from './style';
+import { getComponentLocale } from '../_util/getLocale';
+import zh_CN from './locale/zh_CN';
 
 interface PaginationProps extends BaseProps {
   current: number; //当前页号
@@ -14,27 +17,26 @@ interface PaginationProps extends BaseProps {
   onChange?: (e: { current: number }) => void;
 }
 
-class Pagination extends Component<PaginationProps> {
-  static defaultProps: PaginationProps = {
+interface PaginationState {
+  current: number;
+}
+
+class Pagination extends Component<PaginationProps, PaginationState> {
+  static defaultProps: Partial<PaginationProps> = {
     current: 2,
     total: 5,
     simple: false,
-    disabled: false,
-    locale: {
-      prevText: '上一页',
-      nextText: '下一页'
-    }
+    disabled: false
   };
 
-  state: {
-    current: number;
+  static contextTypes = {
+    contextLocale: PropTypes.object
   };
 
   constructor(props: PaginationProps) {
     super(props);
-    const { current, total } = props;
     this.state = {
-      current
+      current: props.current
     };
   }
 
@@ -70,8 +72,10 @@ class Pagination extends Component<PaginationProps> {
   };
 
   render() {
-    const { total, locale, simple, disabled } = this.props;
+    console.log(`this.context`, this.context);
+    const { total, simple, disabled } = this.props;
     const { current } = this.state;
+    const locale = getComponentLocale(this.props, (this as any).context, 'Pagination', () => zh_CN);
     const { prevText, nextText } = locale;
     return (
       <WithTheme themeStyles={styles}>

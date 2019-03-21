@@ -49,6 +49,7 @@ export default class App extends Component<Props> {
 
   render() {
     const { appStore } = this.props;
+    console.log(`this.props`, this.props);
     return (
       <View style={styles.container}>
         <View style={{ width: '100%' }}>
@@ -78,7 +79,12 @@ export default class App extends Component<Props> {
               <Slider showLeft onChange={this.onChangeSlider} />
               <List>
                 <List.Item activeOpacity={1} showArrow={false}>
-                  <Pagination current={1} total={20} onChange={this.onChangePagination} />
+                  <Pagination
+                    current={1}
+                    total={20}
+                    locale={{ prevText: '上', nextText: '下' }}
+                    onChange={this.onChangePagination}
+                  />
                 </List.Item>
                 <List.Item activeOpacity={1} showArrow={false}>
                   <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
