@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Theme } from '../Theme';
 
 export const sliderWrapWidth = 24;
@@ -11,20 +11,32 @@ export interface PopoverStyles {
   bottomTriangle: ViewStyle;
   leftTriangle: ViewStyle;
   rightTriangle: ViewStyle;
+  style_popover_content: ViewStyle;
+  style_popover_content_text: TextStyle;
 }
 
 export const styles = (theme: Theme) =>
   StyleSheet.create<PopoverStyles>({
-    style_popover_container: { position: 'relative', height: '100%' },
-    style_popover_wrap: { position: 'absolute', zIndex: 9999, top: -500 },
+    style_popover_container: { position: 'relative' },
+    style_popover_wrap: { position: 'absolute', zIndex: 9999, overflow: 'visible' },
+    style_popover_content: {
+      backgroundColor: theme.main_bg_color,
+      borderRadius: 4,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 5,
+      paddingVertical: 3,
+      minWidth: 35
+    },
+    style_popover_content_text: {
+      color: 'white'
+    },
     triangle_container: {
       justifyContent: 'center',
       height: '100%',
       width: '100%',
       backgroundColor: 'transparent',
-      position: 'absolute',
-      top: 0,
-      left: 0
+      position: 'absolute'
     },
     topTriangle: {
       width: 0,

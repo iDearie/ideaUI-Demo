@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle, Text } from 'react-native';
 
 import ViewOverflow from '../overflow';
 import { styles, PopoverStyles } from './style';
 import { WithTheme } from '../Theme';
 import { BaseProps } from '../base/Props';
 
-interface PopoverProps extends BaseProps {
+interface PopoverProps {
   direction?: 'top' | 'bottom' | 'left' | 'right';
   gap?: number;
   isVisible?: boolean;
   customView?: React.ReactElement | null | undefined;
+  message?: string;
 }
 
 type DirObject = {
@@ -50,10 +51,11 @@ export class Popover extends React.Component<PopoverProps> {
     top: (_style) => {
       return {
         setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
-          this.viewRef.setNativeProps({
-            top: -(gap + customHeight + 4),
-            left: (childWidth - customWidth) / 2
-          });
+          this.viewRef &&
+            this.viewRef.setNativeProps({
+              top: -(gap + customHeight + 4),
+              left: (childWidth - customWidth) / 2
+            });
         },
         borderStyle: _style.topTriangle
       };
@@ -61,10 +63,11 @@ export class Popover extends React.Component<PopoverProps> {
     bottom: (_style) => {
       return {
         setPosition: ({ customWidth, customHeight, childWidth, gap }) => {
-          this.viewRef.setNativeProps({
-            bottom: -(gap + customHeight + 4),
-            left: (childWidth - customWidth) / 2
-          });
+          this.viewRef &&
+            this.viewRef.setNativeProps({
+              bottom: -(gap + customHeight + 4),
+              left: (childWidth - customWidth) / 2
+            });
         },
         borderStyle: _style.bottomTriangle
       };
@@ -72,10 +75,11 @@ export class Popover extends React.Component<PopoverProps> {
     left: (_style) => {
       return {
         setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
-          this.viewRef.setNativeProps({
-            top: (childHeight - customHeight) / 2,
-            left: -(customWidth + gap + 4)
-          });
+          this.viewRef &&
+            this.viewRef.setNativeProps({
+              top: (childHeight - customHeight) / 2,
+              left: -(customWidth + gap + 4)
+            });
         },
         borderStyle: _style.leftTriangle
       };
@@ -83,10 +87,11 @@ export class Popover extends React.Component<PopoverProps> {
     right: (_style) => {
       return {
         setPosition: ({ customWidth, customHeight, childHeight, gap }) => {
-          this.viewRef.setNativeProps({
-            top: (childHeight - customHeight) / 2,
-            right: -(customWidth + gap + 4)
-          });
+          this.viewRef &&
+            this.viewRef.setNativeProps({
+              top: (childHeight - customHeight) / 2,
+              right: -(customWidth + gap + 4)
+            });
         },
         borderStyle: _style.rightTriangle
       };
@@ -96,21 +101,23 @@ export class Popover extends React.Component<PopoverProps> {
   layout = (_style: PopoverStyles) => {
     const { direction = Popover.defaultProps.direction, gap = Popover.defaultProps.gap } = this.props;
     this.dirObject = this.dirEnum[direction](_style);
-    this.childrenRef.measure((ox: number, oy: number, childWidth: number, childHeight: number) => {
-      this.customViewRef.measure((ox: number, oy: number, customWidth: number, customHeight: number) => {
-        this.dirObject.setPosition({
-          customWidth,
-          customHeight,
-          childWidth,
-          childHeight,
-          gap
-        });
+    this.childrenRef &&
+      this.childrenRef.measure((ox: number, oy: number, childWidth: number, childHeight: number) => {
+        this.customViewRef &&
+          this.customViewRef.measure((ox: number, oy: number, customWidth: number, customHeight: number) => {
+            this.dirObject.setPosition({
+              customWidth,
+              customHeight,
+              childWidth,
+              childHeight,
+              gap
+            });
+          });
       });
-    });
   };
 
   render() {
-    const { isVisible, customView } = this.props;
+    const { isVisible, message } = this.props;
     return (
       <WithTheme themeStyles={styles}>
         {(_style) => (
@@ -120,9 +127,9 @@ export class Popover extends React.Component<PopoverProps> {
                 style={[_style.style_popover_wrap]}
                 onLayout={() => this.layout(_style)}
                 refs={(ref: any) => (this.viewRef = ref)}>
-                {React.cloneElement(customView as React.ReactElement, {
-                  ref: (ref: any) => (this.customViewRef = ref)
-                })}
+                <View ref={(ref: any) => (this.customViewRef = ref)} style={[_style.style_popover_content]}>
+                  <Text style={[_style.style_popover_content_text]}>{message}</Text>
+                </View>
                 <View style={[_style.triangle_container]}>
                   <View style={[this.dirObject.borderStyle]} />
                 </View>
