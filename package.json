@@ -41,7 +41,8 @@
     "react-test-renderer": "16.6.3",
     "sinon": "^7.2.7",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "utility-types": "^3.4.1"
   },
   "jest": {
     "preset": "react-native",

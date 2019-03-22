@@ -72,7 +72,6 @@ class Pagination extends Component<PaginationProps, PaginationState> {
   };
 
   render() {
-    console.log(`this.context`, this.context);
     const { total, simple, disabled } = this.props;
     const { current } = this.state;
     const locale = getComponentLocale(this.props, (this as any).context, 'Pagination', () => zh_CN);

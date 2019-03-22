@@ -20,6 +20,7 @@ import { Slider } from '../../components/Slider';
 import Tab from '../../components/Tab';
 import { AppStore } from '../../store/AppStore';
 import Switch from '../../components/Switch';
+import { InputItem, PasswordInput } from '../../components/InputItem';
 
 interface Props {
   navigation: NavigationScreenProp<null>;
@@ -55,7 +56,7 @@ export default class App extends Component<Props> {
         <View style={{ width: '100%' }}>
           <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
             <View>
-              <Collapse activeKeys={['list']} onChange={this.onChangeCollapse}>
+              <Collapse activeKeys={['input']} onChange={this.onChangeCollapse}>
                 <Collapse.Panel header={'List'} value={'list'}>
                   <List>
                     <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
@@ -72,6 +73,14 @@ export default class App extends Component<Props> {
                   </Button>
                   <Button viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>提交</Button>
                   <Switch />
+                </Collapse.Panel>
+                <Collapse.Panel header={'Input'} value={'input'}>
+                  <List.Item showArrow={false}>
+                    <PasswordInput clear />
+                  </List.Item>
+                  <List.Item>
+                    <InputItem />
+                  </List.Item>
                 </Collapse.Panel>
               </Collapse>
             </View>
