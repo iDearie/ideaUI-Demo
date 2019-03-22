@@ -9,7 +9,7 @@
  */
 import { inject } from 'mobx-react';
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import Collapse from '../../components/Collapse';
 import { Button } from '../../components/Button';
@@ -21,6 +21,10 @@ import Tab from '../../components/Tab';
 import { AppStore } from '../../store/AppStore';
 import Switch from '../../components/Switch';
 import { InputItem, PasswordInput } from '../../components/InputItem';
+import Icon from '../../components/Icon';
+import { styles } from './style';
+import { Popover } from '../../components/Popover';
+import { SliderWrap } from '../../components/Slider/SliderWrap';
 
 interface Props {
   navigation: NavigationScreenProp<null>;
@@ -54,60 +58,89 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <View style={{ width: '100%' }}>
-          <Tab titleList={[{ code: '1', name: 'title-1' }, { code: '2', name: 'title-2' }]}>
+          <Tab
+            titleList={[
+              { code: 'basic', name: '基础组件' },
+              { code: 'input-data', name: '输入组件' },
+              { code: 'data-display', name: '数据展示组件' }
+            ]}>
+            <Collapse onChange={this.onChangeCollapse}>
+              <Collapse.Panel header={'Button'} value={'button'}>
+                <Button type={'ghost'} onPress={this.navToMine} viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
+                  提交
+                </Button>
+                <Button viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>提交</Button>
+              </Collapse.Panel>
+              <Collapse.Panel header={'Icon'} value={'icon'}>
+                <List.Item>
+                  <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 }}>
+                    <Icon name={'eye'} style={styles.icon} />
+                    <Icon name={'close'} style={[styles.icon, { color: 'skyblue' }]} />
+                    <Icon name={'star-o'} style={[styles.icon, { color: '#999' }]} />
+                  </View>
+                </List.Item>
+              </Collapse.Panel>
+            </Collapse>
             <View>
-              <Collapse activeKeys={['input']} onChange={this.onChangeCollapse}>
-                <Collapse.Panel header={'List'} value={'list'}>
+              <Tab titleList={[{ code: 'text', name: '文字输入' }, { code: 'click', name: '点击输入' }]}>
+                <Collapse>
+                  <Collapse.Panel value={'input-item'} header={'单行输入'}>
+                    <List.Item showArrow={false}>
+                      <PasswordInput clear />
+                    </List.Item>
+                    <List.Item>
+                      <InputItem />
+                    </List.Item>
+                  </Collapse.Panel>
+                </Collapse>
+                <Collapse>
+                  <Collapse.Panel value={'switch'} header={'开关组件'}>
+                    <List.Item showArrow={false}>
+                      <Switch />
+                    </List.Item>
+                  </Collapse.Panel>
+                  <Collapse.Panel value={'slider'} header={'滑动选择组件'}>
+                    <Slider showLeft onChange={this.onChangeSlider} style={{ marginHorizontal: 10 }} />
+                  </Collapse.Panel>
+                  <Collapse.Panel value={'checkbox'} header={'单选&复选组件'}>
+                    <List.Item showArrow={false}>
+                      <Checkbox defaultValue={['1', '2']} type={'tag'} layout={'inline'}>
+                        <Checkbox.Item value={'1'}>123</Checkbox.Item>
+                        <Checkbox.Item value={'2'}>123</Checkbox.Item>
+                      </Checkbox>
+                    </List.Item>
+                  </Collapse.Panel>
+                </Collapse>
+              </Tab>
+            </View>
+            <View>
+              <Collapse>
+                <Collapse.Panel value={'pagination'} header={'分页组件'}>
                   <List>
-                    <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
-                    <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
-                    <List.Item label={'姓名'}>{`appStore - ${appStore.app}`}</List.Item>
+                    <List.Item activeOpacity={1} showArrow={false}>
+                      <Pagination
+                        current={1}
+                        total={20}
+                        locale={{ prevText: '上', nextText: '下' }}
+                        onChange={this.onChangePagination}
+                      />
+                    </List.Item>
+                    <List.Item activeOpacity={1} showArrow={false}>
+                      <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
+                    </List.Item>
+                    <List.Item activeOpacity={1} showArrow={false}>
+                      <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
+                    </List.Item>
                   </List>
                 </Collapse.Panel>
-                <Collapse.Panel header={'Button'} value={'button'}>
-                  <Button
-                    type={'ghost'}
-                    onPress={this.navToMine}
-                    viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>
-                    提交
-                  </Button>
-                  <Button viewStyle={{ marginHorizontal: 15, marginVertical: 5 }}>提交</Button>
-                  <Switch />
-                </Collapse.Panel>
-                <Collapse.Panel header={'Input'} value={'input'}>
-                  <List.Item showArrow={false}>
-                    <PasswordInput clear />
-                  </List.Item>
-                  <List.Item>
-                    <InputItem />
-                  </List.Item>
+                <Collapse.Panel value={'popover'} header={'气泡组件'}>
+                  <View style={{ width: 100, height: 100, alignItems: 'center', justifyContent: 'center', }}>
+                    <Popover message={'200000000'} isVisible={true}>
+                      <Text>123</Text>
+                    </Popover>
+                  </View>
                 </Collapse.Panel>
               </Collapse>
-            </View>
-            <View style={{ marginHorizontal: 20 }}>
-              <Slider showLeft onChange={this.onChangeSlider} />
-              <List>
-                <List.Item activeOpacity={1} showArrow={false}>
-                  <Pagination
-                    current={1}
-                    total={20}
-                    locale={{ prevText: '上', nextText: '下' }}
-                    onChange={this.onChangePagination}
-                  />
-                </List.Item>
-                <List.Item activeOpacity={1} showArrow={false}>
-                  <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
-                </List.Item>
-                <List.Item activeOpacity={1} showArrow={false}>
-                  <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
-                </List.Item>
-                <List.Item showArrow={false}>
-                  <Checkbox defaultValue={['1', '2']} type={'tag'} layout={'inline'}>
-                    <Checkbox.Item value={'1'}>123</Checkbox.Item>
-                    <Checkbox.Item value={'2'}>123</Checkbox.Item>
-                  </Checkbox>
-                </List.Item>
-              </List>
             </View>
           </Tab>
         </View>
@@ -115,23 +148,3 @@ export default class App extends Component<Props> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    overflow: 'visible'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
-  }
-});
