@@ -64,7 +64,7 @@ class Panel extends Component<PanelProps> {
                 </List.Item>
               </View>
             ) : null}
-            <View style={[{ height: opened ? 'auto' : 1, overflow: 'hidden' }]}>{children}</View>
+            {opened ? <View style={[{ height: opened ? 'auto' : 1, overflow: 'hidden' }]}>{children}</View> : null}
           </View>
         )}
       </WithTheme>
