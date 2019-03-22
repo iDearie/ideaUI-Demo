@@ -39,14 +39,5 @@ export const styles = (theme: Theme) =>
       position: 'absolute',
       left: sliderWrapWidth,
       right: sliderWrapWidth
-    },
-    style_popover_content: {
-      backgroundColor: theme.main_bg_color,
-      borderRadius: 4,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 5,
-      paddingVertical: 3,
-      minWidth: 35
     }
   });

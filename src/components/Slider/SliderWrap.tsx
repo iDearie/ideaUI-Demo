@@ -34,13 +34,7 @@ export class SliderWrap extends React.Component<SliderWrapProps> {
       <WithTheme themeStyles={styles}>
         {(_style) => (
           <ViewOverflow refs={refs} style={[_style.style_slider_wrap_view, style]} {...this.panResponder.panHandlers}>
-            <Popover
-              isVisible={showPopover}
-              customView={
-                <View style={[_style.style_popover_content]}>
-                  <Text style={[_style.style_popover_content_text]}>{message}</Text>
-                </View>
-              }>
+            <Popover isVisible={showPopover} message={message}>
               <Image
                 style={[_style.style_slider_wrap_view]}
                 source={require('./images/slider_wrap.png')}

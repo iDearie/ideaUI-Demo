@@ -52,7 +52,7 @@ export class Slider extends React.Component<SliderProps> {
       left: 0,
       right: 0,
       start: 0,
-      end: max
+      end: max || 0
     };
     this.componentWidth = 0;
     this.paddingRight = 0;
@@ -70,7 +70,7 @@ export class Slider extends React.Component<SliderProps> {
   };
 
   resizePosition = (props: SliderProps) => {
-    const { max, showLeft } = this.props;
+    const { max = 0, showLeft } = this.props;
     const { start = this.state.start, end = this.state.end } = props;
     let left = showLeft ? start * this.scaleWidth : 0;
     let right = (max - end) * this.scaleWidth;
@@ -140,6 +140,7 @@ export class Slider extends React.Component<SliderProps> {
   };
   render() {
     const { showLeft, showPopover, startMessage = '', endMessage = '', style } = this.props;
+    const { start, end } = this.state;
     return (
       <WithTheme themeStyles={styles}>
         {(_style) => (
@@ -147,7 +148,7 @@ export class Slider extends React.Component<SliderProps> {
             {showLeft ? (
               <SliderWrap
                 showPopover={showPopover}
-                message={startMessage}
+                message={startMessage || `${start}`}
                 refs={(ref: any) => (this.startWrap = ref)}
                 onDrag={this.onDragStart}
               />
@@ -157,7 +158,7 @@ export class Slider extends React.Component<SliderProps> {
             </View>
             <SliderWrap
               showPopover={showPopover}
-              message={endMessage}
+              message={endMessage || `${end}`}
               refs={(ref: any) => (this.endWrap = ref)}
               onDrag={this.onDragEnd}
             />
