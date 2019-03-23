@@ -54,6 +54,7 @@ class Panel extends Component<PanelProps> {
                 <List.Item
                   showArrow={false}
                   borderBottom={0}
+                  separate={1}
                   activeOpacity={1}
                   onPress={this.triggerPanel}
                   label={React.isValidElement(header) ? header : <Text>{header}</Text>}>
@@ -64,7 +65,7 @@ class Panel extends Component<PanelProps> {
                 </List.Item>
               </View>
             ) : null}
-            {opened ? <View style={[{ height: opened ? 'auto' : 1, overflow: 'hidden' }]}>{children}</View> : null}
+            {opened ? <View style={[{ height: 'auto' }, _style.panel_child_view]}>{children}</View> : null}
           </View>
         )}
       </WithTheme>
