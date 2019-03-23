@@ -127,21 +127,6 @@ exports[`List 组件快照 1`] = `
               }
             />
           </View>
-          <Image
-            source={
-              Object {
-                "testUri": "../../../src/components/List/arrow.png",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "height": 13,
-                  "width": 13,
-                },
-              ]
-            }
-          />
         </View>
       </View>
     </View>
