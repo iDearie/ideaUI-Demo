@@ -32,11 +32,6 @@ export const styles = (theme: Theme) =>
       borderBottomColor: theme.border_color_1
     },
     style_open_view_container: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      width: '100%',
-      height: '100%',
       flex: 1,
       backgroundColor: 'transparent',
       flexDirection: 'row',
@@ -45,7 +40,7 @@ export const styles = (theme: Theme) =>
     },
     styles_extend_component_container: { flexDirection: 'row', alignItems: 'center' },
     style_open_view_container_no_label: { justifyContent: 'flex-start', width: '100%' },
-    style_label_view_container: { flexDirection: 'row', alignItems: 'center' },
+    style_label_view_container: { flexDirection: 'row', alignItems: 'center', marginRight: 10 },
     style_label_view_container_icon: { width: 13, height: 13, marginRight: 15 },
     arrow_png: {
       width: 13,

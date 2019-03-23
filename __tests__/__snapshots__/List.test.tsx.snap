@@ -54,6 +54,7 @@ exports[`List 组件快照 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "marginRight": 10,
               },
             ]
           }
@@ -79,12 +80,7 @@ exports[`List 组件快照 1`] = `
                 "backgroundColor": "transparent",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": "100%",
                 "justifyContent": "flex-end",
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "width": "100%",
               },
               undefined,
               null,
