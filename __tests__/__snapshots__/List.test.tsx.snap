@@ -1,31 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List 组件快照 1`] = `
-<View>
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
-      Object {
-        "opacity": 1,
-      }
+      Array [
+        Object {
+          "backgroundColor": "white",
+        },
+        Object {
+          "marginBottom": 0,
+        },
+      ]
     }
   >
     <View
       style={
         Array [
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
+            "borderBottomColor": "#eaeaea",
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "space-between",
+            "marginHorizontal": 16,
           },
-          Object {
-            "marginBottom": 0,
-          },
+          undefined,
+          null,
         ]
       }
     >
@@ -34,28 +50,60 @@ exports[`List 组件快照 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "borderBottomColor": "#eaeaea",
               "flexDirection": "row",
-              "height": 50,
-              "justifyContent": "space-between",
-              "marginHorizontal": 16,
-            },
-            undefined,
-            Object {
-              "borderBottomWidth": 0.5,
+              "marginRight": 10,
             },
           ]
         }
       >
-        <View
+        <Text
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginRight": 10,
+                "color": "#333",
+                "fontSize": 14,
               },
+            ]
+          }
+        >
+          label
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+            undefined,
+            null,
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ff6644",
+                "borderRadius": 4,
+              },
+              Object {
+                "height": 36,
+              },
+              undefined,
+              null,
+              null,
             ]
           }
         >
@@ -63,70 +111,18 @@ exports[`List 组件快照 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontSize": 14,
-                },
-              ]
-            }
-          >
-            label
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              },
-              undefined,
-              null,
-            ]
-          }
-        >
-          <View
-            accessible={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ff6644",
-                  "borderRadius": 4,
+                  "color": "#fff",
+                  "textAlign": "center",
                 },
                 Object {
-                  "height": 36,
+                  "fontSize": 15,
+                  "lineHeight": 34,
                 },
                 undefined,
                 null,
-                null,
               ]
             }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#fff",
-                    "textAlign": "center",
-                  },
-                  Object {
-                    "fontSize": 15,
-                    "lineHeight": 34,
-                  },
-                  undefined,
-                  null,
-                ]
-              }
-            />
-          </View>
+          />
         </View>
       </View>
     </View>
