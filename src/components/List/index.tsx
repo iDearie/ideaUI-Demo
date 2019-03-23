@@ -25,7 +25,7 @@ export interface ListItemProps {
   activeOpacity?: number;
   disabled?: boolean;
   touchable?: boolean;
-  children: React.ReactElement<any> | React.ReactElement<any>[] | string | number | null;
+  children?: React.ReactElement<any> | React.ReactElement<any>[] | string | number | null;
 }
 
 export interface ListProps {
@@ -44,7 +44,7 @@ class Item extends React.PureComponent<ListItemProps> {
     separate: 0,
     borderBottom: 0.5,
     activeOpacity: 0.2,
-    showArrow: true,
+    showArrow: false,
     disabled: false,
     touchable: true
   };
@@ -58,7 +58,7 @@ class Item extends React.PureComponent<ListItemProps> {
       extendStyle,
       separate = 0,
       borderBottom = 0.5,
-      showArrow = true,
+      showArrow,
       icon,
       activeOpacity = 0.2,
       disabled = false,
@@ -66,43 +66,46 @@ class Item extends React.PureComponent<ListItemProps> {
       children
     } = this.props;
 
-    const renderContainer = (_style: ListItemStyles) => (
-      <View style={[_style.container, { marginBottom: separate }]}>
-        <View
-          style={[
-            _style.style_list_item_container,
-            viewStyle,
-            borderBottom ? { borderBottomWidth: borderBottom } : null
-          ]}>
-          {label ? (
-            <View style={[_style.style_label_view_container]}>
-              {icon ? <Image source={icon} style={[_style.style_label_view_container_icon]} /> : null}
-              {typeof label === 'string' ? (
-                <Text style={[labelStyle ? labelStyle : _style.defaultLabelStyle]}>{label}</Text>
-              ) : (
-                <View style={[labelStyle]}>{label}</View>
-              )}
-            </View>
-          ) : null}
-          {!children || typeof children === 'string' || typeof children === 'number' ? (
-            <View style={[_style.styles_extend_component_container]}>
-              {children ? <Text style={[_style.styles_extend_text, extendStyle]}>{children}</Text> : null}
-              {showArrow ? <Image style={[_style.arrow_png]} source={require('./arrow.png')} /> : null}
-            </View>
-          ) : (
-            <View
-              style={[
-                _style.style_open_view_container,
-                extendStyle,
-                !label ? _style.style_open_view_container_no_label : null
-              ]}>
-              {this.renderChild(this.props)}
-              {showArrow ? <Image style={[_style.arrow_png]} source={require('./arrow.png')} /> : null}
-            </View>
-          )}
+    const renderContainer = (_style: ListItemStyles) => {
+      const _arrow = showArrow ? <Image style={[_style.arrow_png]} source={require('./arrow.png')} /> : null;
+      return (
+        <View style={[_style.container, { marginBottom: separate }]}>
+          <View
+            style={[
+              _style.style_list_item_container,
+              viewStyle,
+              borderBottom ? { borderBottomWidth: borderBottom } : null
+            ]}>
+            {label ? (
+              <View style={[_style.style_label_view_container]}>
+                {icon ? <Image source={icon} style={[_style.style_label_view_container_icon]} /> : null}
+                {typeof label === 'string' ? (
+                  <Text style={[labelStyle ? labelStyle : _style.defaultLabelStyle]}>{label}</Text>
+                ) : (
+                  <View style={[labelStyle]}>{label}</View>
+                )}
+              </View>
+            ) : null}
+            {!children || typeof children === 'string' || typeof children === 'number' ? (
+              <View style={[_style.styles_extend_component_container]}>
+                {children ? <Text style={[_style.styles_extend_text, extendStyle]}>{children}</Text> : null}
+                {_arrow}
+              </View>
+            ) : (
+              <View
+                style={[
+                  _style.style_open_view_container,
+                  extendStyle,
+                  !label ? _style.style_open_view_container_no_label : null
+                ]}>
+                {this.renderChild(this.props)}
+                {_arrow}
+              </View>
+            )}
+          </View>
         </View>
-      </View>
-    );
+      );
+    };
 
     return (
       <WithTheme themeStyles={styles}>
