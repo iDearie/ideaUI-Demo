@@ -27,8 +27,6 @@ exports[`Pagination 组件快照 1`] = `
           "borderColor": "#ff6644",
           "borderRadius": 4,
           "borderWidth": 1,
-          "height": 42,
-          "paddingHorizontal": 40,
         },
         Object {
           "height": 32,
@@ -109,8 +107,6 @@ exports[`Pagination 组件快照 1`] = `
           "borderColor": "#ff6644",
           "borderRadius": 4,
           "borderWidth": 1,
-          "height": 42,
-          "paddingHorizontal": 40,
         },
         Object {
           "height": 32,

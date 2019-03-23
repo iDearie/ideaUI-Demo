@@ -5,7 +5,6 @@ export default (theme: Theme) => {
   return {
     style_btn_default_container: {
       backgroundColor: theme.main_bg_color,
-      paddingHorizontal: 40,
       borderRadius: 4
     },
     style_btn_size_large: {
@@ -46,8 +45,6 @@ export default (theme: Theme) => {
       borderColor: theme.main_border_color,
       borderWidth: 1,
       backgroundColor: '#fff',
-      paddingHorizontal: 40,
-      height: 42,
       borderRadius: 4
     },
     style_btn_ghost_text: {

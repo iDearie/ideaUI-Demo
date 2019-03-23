@@ -104,7 +104,6 @@ exports[`List 组件快照 1`] = `
                 Object {
                   "backgroundColor": "#ff6644",
                   "borderRadius": 4,
-                  "paddingHorizontal": 40,
                 },
                 Object {
                   "height": 36,
