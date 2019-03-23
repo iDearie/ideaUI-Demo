@@ -28,9 +28,7 @@ export interface ListItemProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[] | string | number | null;
 }
 
-export interface ListProps {
-  style?: StyleProp<ViewStyle>;
-}
+export interface ListProps {}
 
 class Item extends React.PureComponent<ListItemProps> {
   renderChild = (props: ListItemProps) => {
@@ -126,7 +124,10 @@ class Item extends React.PureComponent<ListItemProps> {
 export default class List extends React.Component<ListProps> {
   static Item = Item;
   render() {
-    const { children, style } = this.props;
-    return <View style={style}>{children}</View>;
+    const { children } = this.props;
+    const _children = React.Children.toArray(children);
+    return _children.map((child, index) =>
+      React.cloneElement(child as React.ReactElement, index === _children.length - 1 ? { borderBottom: 0 } : {})
+    );
   }
 }
