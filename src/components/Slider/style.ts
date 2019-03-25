@@ -28,7 +28,7 @@ export const styles = (theme: Theme) =>
       alignItems: 'center'
     },
     style_slider_line_container: {
-      backgroundColor: theme.bg_color_1,
+      backgroundColor: theme.text_color_2,
       width: '100%',
       height: 3,
       position: 'relative'
