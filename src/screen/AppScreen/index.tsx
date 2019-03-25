@@ -26,6 +26,7 @@ import { styles } from './style';
 import { Popover } from '../../components/Popover';
 import { SliderWrap } from '../../components/Slider/SliderWrap';
 import TimeLineList from '../../components/TimeLineList';
+import TextAreaItem from '../../components/TextAreaItem';
 
 interface Props {
   navigation: NavigationScreenProp<null>;
@@ -91,6 +92,11 @@ export default class App extends Component<Props> {
                   <List.Item>
                     <InputItem />
                   </List.Item>
+                </Collapse.Panel>
+                <Collapse.Panel value={'textarea-item'} header={'多行输入'}>
+                  <View style={{ padding: 10 }}>
+                    <TextAreaItem rows={4} theme={'light'} />
+                  </View>
                 </Collapse.Panel>
               </Collapse>
               <Collapse>
