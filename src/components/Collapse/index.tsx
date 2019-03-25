@@ -48,7 +48,7 @@ class Panel extends Component<PanelProps> {
     return (
       <WithTheme themeStyles={styles}>
         {(_style) => (
-          <View>
+          <View style={opened ? _style.container : null}>
             {header ? (
               <View style={[_style.header_container]}>
                 <List.Item
