@@ -4,7 +4,7 @@ import { Theme } from '../theme';
 export default (theme: Theme) => {
   return {
     style_btn_default_container: {
-      backgroundColor: theme.main_bg_color,
+      backgroundColor: theme.main_color,
       borderRadius: 4
     },
     style_btn_size_large: {
@@ -42,13 +42,13 @@ export default (theme: Theme) => {
       opacity: 0.8
     },
     style_btn_ghost_container: {
-      borderColor: theme.main_border_color,
+      borderColor: theme.main_color,
       borderWidth: 1,
       backgroundColor: '#fff',
       borderRadius: 4
     },
     style_btn_ghost_text: {
-      color: theme.main_text_color,
+      color: theme.main_color,
       textAlign: 'center'
     },
     style_btn_ghost_disabled_neutral_container: {

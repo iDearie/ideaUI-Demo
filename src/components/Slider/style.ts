@@ -13,7 +13,7 @@ export const styles = (theme: Theme) =>
       zIndex: 100
     },
     style_slider_wrap_text: {
-      color: theme.main_text_color,
+      color: theme.main_color,
       fontSize: 8,
       width: '100%',
       textAlign: 'center',
@@ -35,7 +35,7 @@ export const styles = (theme: Theme) =>
     },
     style_slider_line_active: {
       height: '100%',
-      backgroundColor: theme.main_bg_color,
+      backgroundColor: theme.main_color,
       position: 'absolute',
       left: sliderWrapWidth,
       right: sliderWrapWidth

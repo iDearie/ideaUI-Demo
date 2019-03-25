@@ -20,7 +20,7 @@ export const styles = (theme: Theme) =>
       alignItems: 'center'
     },
     current: {
-      color: theme.main_text_color
+      color: theme.main_color
     },
     btn: {
       paddingHorizontal: 10

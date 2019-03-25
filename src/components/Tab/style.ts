@@ -38,7 +38,7 @@ export const styles = (theme: Theme) =>
       height: 5
     },
     style_tab_title_active_wrap: {
-      backgroundColor: theme.main_bg_color,
+      backgroundColor: theme.main_color,
       width: 10,
       height: '100%',
       alignSelf: 'center'
@@ -51,5 +51,5 @@ export const styles = (theme: Theme) =>
       flexDirection: 'row'
     },
     style_item_container: { flex: 1, height: '100%', overflow: 'hidden' },
-    style_tab_title_active_item_text: { color: theme.main_text_color }
+    style_tab_title_active_item_text: { color: theme.main_color }
   });

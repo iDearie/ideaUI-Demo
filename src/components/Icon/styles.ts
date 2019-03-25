@@ -9,7 +9,7 @@ export interface IconStyles {
 export const styles = (theme: Theme) =>
   StyleSheet.create<IconStyles>({
     style_default_icon: {
-      color: theme.main_text_color,
+      color: theme.main_color,
       fontSize: 12
     },
     touchable_view: {

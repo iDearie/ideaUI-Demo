@@ -32,12 +32,12 @@ export const styles = (theme: Theme) =>
       color: theme.text_color_2
     },
     style_checkbox_inline_tag_item_view_active: {
-      borderColor: theme.main_border_color,
+      borderColor: theme.main_color,
       paddingHorizontal: 10,
       paddingVertical: 5
     },
     style_checkbox_inline_tag_item_text_active: {
-      color: theme.main_text_color
+      color: theme.main_color
     },
     style_checkbox_inline_checkbox_item_view: {
       marginLeft: 10,
