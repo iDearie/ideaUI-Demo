@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleProp, Text, View, ViewStyle } from 'react-native';
+import { BaseProps } from '../base/Props';
 import { WithTheme } from '../Theme';
 import { styles } from './style';
-import { BaseProps } from '../base/Props';
 
 export interface TimeLineListProps {
   style?: StyleProp<ViewStyle>;
@@ -53,12 +53,7 @@ export default class TimeLineList extends Component<TimeLineListProps, any> {
             {_children.map((child, index) => {
               const isFirst = index === 0;
               const isLast = index === _children.length - 1;
-              return (
-                // <Item key={index} isFirst={isFirst} isLast={isLast}>
-                //   {child}
-                // </Item>
-                React.cloneElement(child as React.ReactElement, { isFirst, isLast })
-              );
+              return React.cloneElement(child as React.ReactElement, { isFirst, isLast });
             })}
           </View>
         )}

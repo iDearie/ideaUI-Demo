@@ -25,6 +25,7 @@ import Icon from '../../components/Icon';
 import { styles } from './style';
 import { Popover } from '../../components/Popover';
 import { SliderWrap } from '../../components/Slider/SliderWrap';
+import TimeLineList from '../../components/TimeLineList';
 
 interface Props {
   navigation: NavigationScreenProp<null>;
@@ -81,67 +82,79 @@ export default class App extends Component<Props> {
                 </List.Item>
               </Collapse.Panel>
             </Collapse>
-            <View>
-              <Tab titleList={[{ code: 'text', name: '文字输入' }, { code: 'click', name: '点击输入' }]}>
-                <Collapse>
-                  <Collapse.Panel value={'input-item'} header={'单行输入'}>
-                    <List.Item showArrow={false}>
-                      <PasswordInput clear />
-                    </List.Item>
-                    <List.Item>
-                      <InputItem />
-                    </List.Item>
-                  </Collapse.Panel>
-                </Collapse>
-                <Collapse>
-                  <Collapse.Panel value={'switch'} header={'开关组件'}>
-                    <List.Item showArrow={false}>
-                      <Switch />
-                    </List.Item>
-                  </Collapse.Panel>
-                  <Collapse.Panel value={'slider'} header={'滑动选择组件'}>
-                    <Slider showLeft onChange={this.onChangeSlider} style={{ marginHorizontal: 10 }} />
-                  </Collapse.Panel>
-                  <Collapse.Panel value={'checkbox'} header={'单选&复选组件'}>
-                    <List.Item showArrow={false}>
-                      <Checkbox defaultValue={['1', '2']} type={'tag'} layout={'inline'}>
-                        <Checkbox.Item value={'1'}>123</Checkbox.Item>
-                        <Checkbox.Item value={'2'}>123</Checkbox.Item>
-                      </Checkbox>
-                    </List.Item>
-                  </Collapse.Panel>
-                </Collapse>
-              </Tab>
-            </View>
-            <View>
+            <Tab titleList={[{ code: 'text', name: '文字输入' }, { code: 'click', name: '点击输入' }]}>
               <Collapse>
-                <Collapse.Panel value={'pagination'} header={'分页组件'}>
-                  <List>
-                    <List.Item activeOpacity={1} showArrow={false}>
-                      <Pagination
-                        current={1}
-                        total={20}
-                        locale={{ prevText: '上', nextText: '下' }}
-                        onChange={this.onChangePagination}
-                      />
-                    </List.Item>
-                    <List.Item activeOpacity={1} showArrow={false}>
-                      <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
-                    </List.Item>
-                    <List.Item activeOpacity={1} showArrow={false}>
-                      <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
-                    </List.Item>
-                  </List>
-                </Collapse.Panel>
-                <Collapse.Panel value={'popover'} header={'气泡组件'}>
-                  <View style={{ width: 100, height: 100, alignItems: 'center', justifyContent: 'center', }}>
-                    <Popover message={'200000000'} isVisible={true}>
-                      <Text>123</Text>
-                    </Popover>
-                  </View>
+                <Collapse.Panel value={'input-item'} header={'单行输入'}>
+                  <List.Item showArrow={false}>
+                    <PasswordInput clear />
+                  </List.Item>
+                  <List.Item>
+                    <InputItem />
+                  </List.Item>
                 </Collapse.Panel>
               </Collapse>
-            </View>
+              <Collapse>
+                <Collapse.Panel value={'switch'} header={'开关组件'}>
+                  <List.Item showArrow={false}>
+                    <Switch />
+                  </List.Item>
+                </Collapse.Panel>
+                <Collapse.Panel value={'slider'} header={'滑动选择组件'}>
+                  <Slider showLeft onChange={this.onChangeSlider} style={{ marginHorizontal: 10 }} />
+                </Collapse.Panel>
+                <Collapse.Panel value={'checkbox'} header={'单选&复选组件'}>
+                  <List.Item showArrow={false}>
+                    <Checkbox defaultValue={['1', '2']} type={'tag'} layout={'inline'}>
+                      <Checkbox.Item value={'1'}>123</Checkbox.Item>
+                      <Checkbox.Item value={'2'}>123</Checkbox.Item>
+                    </Checkbox>
+                  </List.Item>
+                </Collapse.Panel>
+              </Collapse>
+            </Tab>
+            <Collapse>
+              <Collapse.Panel value={'pagination'} header={'分页组件'}>
+                <List>
+                  <List.Item activeOpacity={1} showArrow={false}>
+                    <Pagination
+                      current={1}
+                      total={20}
+                      locale={{ prevText: '上', nextText: '下' }}
+                      onChange={this.onChangePagination}
+                    />
+                  </List.Item>
+                  <List.Item activeOpacity={1} showArrow={false}>
+                    <Pagination current={1} total={10} simple onChange={this.onChangePagination} />
+                  </List.Item>
+                  <List.Item activeOpacity={1} showArrow={false}>
+                    <Pagination current={1} total={10} disabled onChange={this.onChangePagination} />
+                  </List.Item>
+                </List>
+              </Collapse.Panel>
+              <Collapse.Panel value={'popover'} header={'气泡组件'}>
+                <View style={{ width: 100, height: 100, alignItems: 'center', justifyContent: 'center' }}>
+                  <Popover message={'200000000'} isVisible={true}>
+                    <Text>123</Text>
+                  </Popover>
+                </View>
+              </Collapse.Panel>
+              <Collapse.Panel value={'time-list'} header={'时间线组件'}>
+                <TimeLineList header={'时间线'} style={{ marginHorizontal: 16 }}>
+                  <TimeLineList.Item title={'2018-01-01'}>
+                    <View>
+                      <View style={{ height: 100 }} />
+                    </View>
+                  </TimeLineList.Item>
+                  <TimeLineList.Item title={'2017-01-01'} />
+                  <TimeLineList.Item>
+                    <Text>2016-01-01</Text>
+                  </TimeLineList.Item>
+                  <TimeLineList.Item title={<Text>2015-01-01</Text>}>
+                    <View style={{ height: 50, backgroundColor: 'orange' }} />
+                  </TimeLineList.Item>
+                </TimeLineList>
+              </Collapse.Panel>
+            </Collapse>
           </Tab>
         </View>
       </View>
