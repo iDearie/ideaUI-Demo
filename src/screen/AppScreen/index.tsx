@@ -83,7 +83,7 @@ export default class App extends Component<Props> {
                 </List.Item>
               </Collapse.Panel>
             </Collapse>
-            <Tab titleList={[{ code: 'text', name: '文字输入' }, { code: 'click', name: '点击输入' }]}>
+            <Tab choice={'click'} titleList={[{ code: 'text', name: '文字输入' }, { code: 'click', name: '点击输入' }]}>
               <Collapse>
                 <Collapse.Panel value={'input-item'} header={'单行输入'}>
                   <List.Item showArrow={false}>
@@ -101,9 +101,16 @@ export default class App extends Component<Props> {
               </Collapse>
               <Collapse>
                 <Collapse.Panel value={'switch'} header={'开关组件'}>
-                  <List.Item showArrow={false}>
-                    <Switch />
-                  </List.Item>
+                  <List>
+                    <List.Item showArrow={false}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text>默认关：</Text>
+                        <Switch />
+                        <Text>默认开：</Text>
+                        <Switch checked />
+                      </View>
+                    </List.Item>
+                  </List>
                 </Collapse.Panel>
                 <Collapse.Panel value={'slider'} header={'滑动选择组件'}>
                   <Slider showLeft onChange={this.onChangeSlider} style={{ marginHorizontal: 10 }} />
