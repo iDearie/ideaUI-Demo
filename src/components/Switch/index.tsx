@@ -10,7 +10,7 @@ interface SwitchProps extends BaseProps {
   onChange?: (checked: boolean) => void; // 改变状态回调方法 参数为当前选中状态
 }
 
-export default class Switch extends React.Component<SwitchProps> {
+export class Switch extends React.Component<SwitchProps> {
   state: {
     translateX: Animated.Value;
     checked: boolean;

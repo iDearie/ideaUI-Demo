@@ -78,7 +78,7 @@ interface CollapseProps {
   onChange?: (activeKeys: string[]) => void;
 }
 
-export default class Collapse extends Component<CollapseProps> {
+export class Collapse extends Component<CollapseProps> {
   static Panel = Panel;
   render() {
     const { children, activeKeys } = this.props;

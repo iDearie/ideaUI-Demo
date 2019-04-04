@@ -39,7 +39,7 @@ const Item = ({ children, isFirst, isLast, title }: TimeListItemProps) => (
   </WithTheme>
 );
 
-export default class TimeLineList extends Component<TimeLineListProps, any> {
+export class TimeLineList extends Component<TimeLineListProps, any> {
   static Item = Item;
 
   render() {

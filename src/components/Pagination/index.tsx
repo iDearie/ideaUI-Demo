@@ -21,7 +21,7 @@ interface PaginationState {
   current: number;
 }
 
-class Pagination extends Component<PaginationProps, PaginationState> {
+export class Pagination extends Component<PaginationProps, PaginationState> {
   static defaultProps: Partial<PaginationProps> = {
     current: 2,
     total: 5,
@@ -109,5 +109,3 @@ class Pagination extends Component<PaginationProps, PaginationState> {
     );
   }
 }
-
-export default Pagination;

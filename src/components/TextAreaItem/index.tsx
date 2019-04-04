@@ -34,7 +34,7 @@ export interface TextAreaItemProps extends TextInputProps, WithThemeStyles<TextA
   onErrorClick?: () => void;
 }
 
-export default class TextAreaItem extends Component<TextAreaItemProps, any> {
+export class TextAreaItem extends Component<TextAreaItemProps, any> {
   static defaultProps = {
     theme: 'dark',
     maxLength: 100

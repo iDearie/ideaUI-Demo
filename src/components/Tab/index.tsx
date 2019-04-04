@@ -28,7 +28,7 @@ interface TabProps extends BaseProps {
   onChangeTab?: Function;
 }
 
-export default class Tab extends React.Component<TabProps> {
+export class Tab extends React.Component<TabProps> {
   titleItemWidth: number;
 
   state: {

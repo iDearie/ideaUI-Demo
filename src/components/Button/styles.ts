@@ -1,8 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Theme } from '../theme';
 
-export default (theme: Theme) => {
-  return {
+export interface ButtonStyle {
+  style_btn_default_container: ViewStyle;
+  style_btn_size_large: ViewStyle;
+  style_btn_size_default: ViewStyle;
+  style_btn_size_small: ViewStyle;
+  style_btn_default_text: TextStyle;
+  style_btn_size_large_text: TextStyle;
+  style_btn_size_default_text: TextStyle;
+  style_btn_size_small_text: TextStyle;
+  style_btn_ghost_text: TextStyle;
+  style_btn_default_disabled_neutral_container: ViewStyle;
+  style_btn_default_disabled_status_container: ViewStyle;
+  style_btn_default_pressIn_container: ViewStyle;
+  style_btn_ghost_container: ViewStyle;
+  style_btn_ghost_disabled_neutral_container: ViewStyle;
+  style_btn_ghost_disabled_status_container: ViewStyle;
+  style_btn_ghost_pressIn_container: ViewStyle;
+}
+
+export default (theme: Theme) =>
+  StyleSheet.create<ButtonStyle>({
     style_btn_default_container: {
       backgroundColor: theme.main_color,
       borderRadius: 4
@@ -61,5 +80,4 @@ export default (theme: Theme) => {
     style_btn_ghost_pressIn_container: {
       backgroundColor: '#FFEFEC'
     }
-  };
-};
+  });

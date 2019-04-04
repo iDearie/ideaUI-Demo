@@ -1,7 +1,15 @@
-import React from 'react';
-import { TouchableWithoutFeedback, View, Text, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import buttonStyle from './styles';
+import React, { ComponentType, Component } from 'react';
+import {
+  GestureResponderEvent,
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle
+} from 'react-native';
 import { WithTheme } from '../Theme';
+import buttonStyle from './styles';
 
 interface ButtonProps {
   type?: 'default' | 'ghost'; // 按钮样式 默认: default 幽灵: ghost
@@ -11,11 +19,12 @@ interface ButtonProps {
   textStyle?: StyleProp<TextStyle>; // 按钮文案样式
   bgColor?: 'base' | 'aux';
   size?: 'large' | 'default' | 'small'; // 按钮大小
-  onPress?: (e: any) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   children?: string;
 }
-
-export class Button extends React.Component<ButtonProps> {
+const initialState = { pressIn: false };
+type State = Readonly<typeof initialState>;
+export class Button extends React.Component<ButtonProps, State> {
   static defaultProps: ButtonProps = {
     type: 'default',
     disabled: false,
@@ -24,9 +33,7 @@ export class Button extends React.Component<ButtonProps> {
     size: 'default'
   };
 
-  state = {
-    pressIn: false
-  };
+  readonly state: State = initialState;
 
   onPressIn = () => {
     this.setState({
@@ -42,7 +49,6 @@ export class Button extends React.Component<ButtonProps> {
 
   render() {
     const { children, type, disabled, disabledType, bgColor, size, viewStyle, textStyle, onPress } = this.props;
-
     const { pressIn } = this.state;
     return (
       <WithTheme themeStyles={buttonStyle}>

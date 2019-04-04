@@ -10,7 +10,7 @@ interface IconProps {
   onPress?: () => void;
 }
 
-export default class Icon extends Component<IconProps> {
+export class Icon extends Component<IconProps> {
   render() {
     const { style, name, onPress } = this.props;
     return (

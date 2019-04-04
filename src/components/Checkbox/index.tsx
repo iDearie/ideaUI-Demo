@@ -111,7 +111,7 @@ class Item extends React.Component<CheckboxItemProps> {
   }
 }
 
-export default class Checkbox extends React.Component<CheckboxProps, any> {
+export class Checkbox extends React.Component<CheckboxProps, any> {
   static Item = Item;
 
   constructor(props: CheckboxProps) {

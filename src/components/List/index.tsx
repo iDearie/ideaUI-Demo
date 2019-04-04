@@ -121,7 +121,7 @@ class Item extends React.PureComponent<ListItemProps> {
   }
 }
 
-export default class List extends React.Component<ListProps> {
+export class List extends React.Component<ListProps> {
   static Item = Item;
   render() {
     const { children } = this.props;
